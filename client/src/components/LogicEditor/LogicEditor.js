@@ -27,36 +27,27 @@ export default function LogicEditor() {
   };
 
   const handleKeyEvent = (event) => {
-    // TODO split logic into keypress and keydown!
-    const key = event.keyCode || event.charCode;
-    // SHOULD ACTUALLY BE DONE IN THE VALIDATESTRING OF THE SYNTAX. CAREFUL: this is done also in keypress
-    if (key === 13 && !([".", "\n", "\r\n", "\r"].includes(localState.textareaText.slice(-1)))) { // TODO FIX not working for consecutive linebreaks. Anyway should probably be done in validate
-      // if (key === 13 && !(textarea.value.match(/(\r?\n|\r)$|\.$/))) { // TODO FIX not working for consecutive linebreaks. Anyway should probably be done in validate
-        console.log('stop it motherfucker');
-        event.preventDefault();
-        return true;
-      }
-
-      const new_char = String.fromCharCode(event.charCode);
-      const current_text = localState.textareaText;
-      const suggestions = localState.Syntax.validateString(current_text+new_char);
-      if (!suggestions) {
-        console.log('NOT ALLOWED');
-        event.preventDefault();
-        clearTimeout(localState.forbiddenCharTimeoutId);
-        setLocalState(prevLocalState => {
-          return {...prevLocalState, typedForbiddenChar: true, forbiddenCharTimeoutId: setTimeout(() => setLocalState(prevLS => { return {...prevLS, typedForbiddenChar: false}}), 200)};
+    if (event.type === 'keydown' && !(event.keyCode === 8 || event.keyCode === 46)) {
+      return
+    }
+    let { wasAllowed, suggestions,  wholeTextIsValid } = localState.Syntax.handleKeyEvent(event, localState.textareaText); // 'wholeTextIsValid' does not actually check the whole text, only that it ends with "this is the final quote".
+    if (!wasAllowed) {
+      event.preventDefault();
+      clearTimeout(localState.forbiddenCharTimeoutId);
+      setLocalState(prevLocalState => {
+        return {...prevLocalState, typedForbiddenChar: true, forbiddenCharTimeoutId: setTimeout(() => setLocalState(prevLS => { return {...prevLS, typedForbiddenChar: false, wholeTextIsValid}}), 200)};
+      });
+    } else {
+      suggestions = suggestions.map(suggestion => suggestion === '.' ? '. (dot)' : suggestion);
+      const mrkr = document.querySelector('.input__marker');
+      if (mrkr) { // mrkr cannot be added dynamically in React because it needs to be at the document level, not inside this component. UNLESS I also add it in location change, just like when i remove it... ahà..
+        mrkr.innerHTML ='';
+        suggestions.forEach(suggestion => {
+          mrkr.innerHTML += '<p>'+suggestion+'</p>';
         });
-      } else {
-        const mrkr = document.querySelector('.input__marker');
-        if (mrkr) { // This cannot be done dynamically in React because it needs to be in the document level, not inside this component. UNLESS I also add it in location change, just like when i remove it... ahà..
-          mrkr.innerHTML ='';
-          suggestions.forEach(suggestion => {
-            mrkr.innerHTML += '<p>'+suggestion+'</p>';
-          });
-        }
-        setLocalState(prevLocalState => { return {...prevLocalState, autocompleteSuggestions: suggestions}});
       }
+      setLocalState(prevLocalState => { return {...prevLocalState, autocompleteSuggestions: suggestions, wholeTextIsValid}});
+    }
   };
 
   const fields = useSelector((state) => state.formFields);
@@ -82,15 +73,18 @@ export default function LogicEditor() {
         </div>
         <div className="main-editor" style={{}}>
           <div id="error_message" className={localState.typedForbiddenChar ? 'shown' : ''}></div>
-          {/* <!-- POSITION RELATIVE FOR THE TEXTAREA IS OF VITAL IMPORTANCE--> */}
-          <textarea id="the_area" onKeyPress={handleKeyEvent} value={localState.textareaText} onChange={handleTextareaChange} onClick={(event) => showPositionMarker(event)} onMouseUp={(event) => getSelectionArea(event)} className="get-position-textarea get-selection-textarea" placeholder="Start typing..."></textarea>
+          {/* <!-- 'POSITION: RELATIVE' FOR THE TEXTAREA IS OF VITAL IMPORTANCE--> */}
+          <textarea id="the_area" onKeyPress={handleKeyEvent} onKeyDown={handleKeyEvent} value={localState.textareaText} onChange={handleTextareaChange} onClick={(event) => showPositionMarker(event)} onMouseUp={(event) => getSelectionArea(event)} className="get-position-textarea get-selection-textarea" placeholder="Start typing..."></textarea>
+          <form>
+            {localState.wholeTextIsValid ? <button>SAVE</button> : <button disabled>SAVE</button>}
+          </form>
         </div>
         <div className="side-panel" style={{width:'25%'}}>
           <h3>EXAMPLE</h3>
-            <p>Take the number of trees. Multiply it by the property cost of type of tree job. Add 25. This is Part 1.</p>
-            <p>Take the grass square meters. Multiply it by 10'3. Add 20%. If urgent is selected, add 100 to it. This is Part 2.</p>
-            <p>Take Part 1. Add Part 2. Round it to the nearest 1. This is the Final Quote.</p>
-          <h3>SUGGESTIONS</h3>
+            <p><span style={{textDecoration:'underline'}}>Take</span> the number of trees. Multiply it by the property cost of type of tree job. Add 25. This is Part 1.</p>
+            <p>Take the grass square meters. Multiply it by 10'3. Add 20%. If urgent is checked, add 100 to it. This is Part 2.</p>
+            <p>Take Part 1. Add Part 2. Round it to the nearest 1. <span style={{textDecoration:'underline'}}>This is the Final Quote</span>.</p>
+          <h3>ALL SUGGESTIONS</h3>
           <div>
             {localState.autocompleteSuggestions.map((suggestion, idx) => <p key={idx}>{suggestion}</p>)}
           </div>
