@@ -1,19 +1,3 @@
-// export function setTodoDone (id, done) {
-//   return ({
-//     type: 'SET_TODO_DONE',
-//     payload: { id, done }
-//   })
-// }
-
-// export function addTodo(text) {
-//   return {
-//     type: 'ADD_TODO',
-//     payload: {
-//       text
-//     }
-//   }
-// }
-//////////////////////////////////////
 
 export function handleFieldChange({target}, fieldId) {
   return {

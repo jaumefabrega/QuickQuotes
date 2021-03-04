@@ -1,7 +1,5 @@
-import React from 'react'
 import FieldPreview from '../FieldPreview/FieldPreview'
-import { useSelector, useDispatch } from 'react-redux'
-import { handleFormSettingsChange, handleFieldAdd } from '../../actions'
+import { useSelector } from 'react-redux'
 
 export default function FormPreviewer() {
   const fields = useSelector((state) => state.formFields)

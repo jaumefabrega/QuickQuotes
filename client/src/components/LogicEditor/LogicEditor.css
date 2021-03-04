@@ -1,0 +1,161 @@
+textarea#the_area {
+  resize: none;color:#555;font-size:16px;line-height:30px; position:relative; width:400px; border-width:0;outline:none;
+}
+
+#error_message {
+  opacity:0;
+  transition: opacity 0.2s;
+  position:relative;width:15px;height:15px;border-radius:7.5px;background-color:#ff9b9b;margin-right:10px;margin-top:9px;
+}
+
+
+#error_message.shown {
+  opacity:1;
+}
+
+.input__marker p {
+  margin: 5px 0;
+}
+.input__marker p:first-child {
+  margin-top: 0;
+}
+
+* {
+	box-sizing: border-box;
+	animation: fadeIn 0.5s;
+}
+
+body {
+	text-align: center;
+	font-size: 16px;
+	font-family: 'Lato', sans-serif;
+}
+
+p {
+	max-width: 300px;
+	margin: 0 auto 30px;
+}
+
+h1 {
+	font-size: 2.5rem;
+}
+
+textarea {
+	height: 150px;
+}
+
+.demo-input {
+	margin: 10px auto;
+}
+
+.use-cases {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.use-cases .use-case {
+	margin: 0 15px;
+}
+
+.custom-suggestions {
+	cursor: pointer;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.custom-suggestions--active {
+	background-color: #19b5fe;
+}
+
+.custom-suggestions li {
+	text-align: left;
+}
+
+.custom-suggestions li:hover {
+	background-color: #19b5fe;
+}
+
+.input {
+	border: 0;
+	border-radius: 4px;
+	color: #111;
+	font-size: 16px;
+	line-height: 16px;
+	outline: 0;
+	padding: 10px 12px;
+	position: relative;
+	text-align: left;
+	width: 230px;
+}
+
+.input::placeholder {
+	color: #cfcfcf;
+	text-align: center;
+}
+
+.input__marker {
+	background-color: white;
+  color:silver;
+	border-radius: 4px;
+	display: block;
+	font-size: 12px;
+	padding: 4px 12px 4px 6px;;
+	position: absolute;
+	transform: translate(-4px, 16px);
+  text-align:left;
+	transition: top 0.1s ease 0s, left 0.1s ease 0s;
+	white-space: nowrap;
+	width: auto;
+	z-index: 9999;
+}
+
+.input__marker--custom {
+	transform: translate(16px, 16px);
+}
+
+.input__marker--custom:after {
+	display: none;
+}
+
+@-moz-keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
