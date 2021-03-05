@@ -1,0 +1,105 @@
+/* header styles */
+.header {
+  position:absolute; top:0; left:25%;height:65px;width:50%; padding:5px 20px; padding-top:10px;display:flex;justify-content: space-between; align-items:center;
+  /* transition: left 0.3s ease-out; */
+}
+
+.header a {
+  height: 100%;
+}
+
+.logo-wrapper {
+  display:flex; height:100%; justify-content:center; align-items: center;
+}
+
+#logo {
+  height:85%;
+}
+
+.header h4 {
+  margin-bottom:30px;margin:0 10px;
+}
+
+
+/* Account link styles */
+.account-wrapper {
+  display:flex; height:100%; justify-content:center; align-items: center;
+}
+
+.account-wrapper h4 {
+  margin-bottom:30px;margin:0 10px; font-weight:normal; color:#555;
+}
+
+.account-wrapper img {
+  height:70%;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.account-wrapper img:hover {
+  opacity:1;
+}
+
+/* switch slider styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 23px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  /* background-color: #2196F3; */
+  background-color: #3d90e3;
+  background-color: #91c0ef;
+}
+
+input:focus + .slider {
+  /* box-shadow: 0 0 1px #2196F3; */
+  box-shadow: 0 0 1px #3d90e3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

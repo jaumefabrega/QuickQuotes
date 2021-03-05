@@ -9,6 +9,7 @@ import FieldsEditor from './components/FieldsEditor/FieldsEditor'
 import LogicEditor from './components/LogicEditor/LogicEditor'
 import Account from './components/Account/Account'
 import Dashboard from './components/Dashboard/Dashboard'
+import Header from './components/Header/Header'
 import { removeSuggestionBox } from './utils/autcompleteBox';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <div className="App">
          {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
+            <Header />
           <Switch>
             <Route path="/fields">
               <FieldsEditor />

@@ -1,13 +1,96 @@
-body {
+html, body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  min-width: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
+
+#root {
+  height: 100%;
+}
+
+select:focus, input:focus {
+  outline: none;
+}
+
+.button {
+}
+
+.wrapper.submit {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.button.primary {
+  padding: 0.75rem;
+  border-width: 0;
+  /* border-radius: 0.25rem; */
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: .85rem;
+  background-color: #91c0ef;
+}
+
+.button.primary:disabled {
+  /* background-color: #bccbdb; */
+  opacity: 0.3;
+}
+
+.button.secondary {
+  border:none;
+  background-color:transparent;
+  outline:none;
+  opacity: 0.5;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.button.primary:hover:not(:disabled) {
+  background-color: #6f8bfb!important;
+  cursor:pointer;
+}
+
+.button.secondary:hover {
+  opacity: 1;
+  cursor:pointer;
+}
+
+a  {
+  text-decoration: none;
+}
+
+a:visited, a:hover, a:active {
+  color: inherit;
+}
+
+label {
+  color: #555;
+}
+
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 18px;
+  border: 6px solid white;
+  background: #e5e5e5;
+  width: 12px;
+}
+

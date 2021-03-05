@@ -1,4 +1,4 @@
-.material-icons, select option, select {
+.field .material-icons, .field select option, .field select {
   font-family: 'Material Icons', 'Roboto';
   font-weight: normal;
   font-style: normal;
@@ -15,4 +15,88 @@
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga';
+}
+
+.form-editor .field {
+  width: calc(100% + 20px);
+  background-color: white;
+  border: 1px solid transparent;
+  border-left: 16px solid #e5e5e5;
+  border-radius: 0 10px 10px 0;
+  padding: 15px;
+  margin: auto;
+  margin-left: -20px;
+  margin-top: 20px;
+}
+
+.form-editor .field:hover {
+  border: 1px solid #e5e5e5;
+  border-left: 16px solid #e5e5e5;
+}
+
+.field input:not([type='submit']), select {
+  /* border: 1px solid #dadce0; */
+  border: 0px solid #dadce0;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 9px;
+  margin-top: 5px;
+}
+
+.field input[type='text'], input[type='number'] {
+  line-height: 26px;
+  width: calc(100% - 85px);
+  border-width: 0px;
+}
+
+.field img {
+  opacity: 0.5;
+  cursor:pointer;
+}
+
+.field .field-name {
+  font-weight: bold;
+}
+
+.field .field-main-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-options-wrapper {
+  padding-left:20px;
+}
+
+.dropdown-option-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.field .dropdown-option-wrapper input {
+  margin-top: 0;
+}
+
+.field .dropdown-option-wrapper svg {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.field .dropdown-option-wrapper span {
+  opacity: 0.7;
+}
+
+.field-settings {
+  width: 94%;
+  border-top: 1px solid #dadce0;
+  margin: 0 auto;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.field-name::placeholder {
+	color: #cfcfcf;
+  font-weight:normal !important;
 }

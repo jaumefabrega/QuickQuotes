@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import './Account.css'
 
 export default function Account() {
   return (
-    <div>
-      <h1>ACCOUNT ACCOUNT ACCOUNT</h1>
-      <h1><Link to="/">Home</Link></h1>
+    <div className="account center-wrapper">
+      <h1>You are in your ACCOUNT</h1>
+
     </div>
   )
 }

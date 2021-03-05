@@ -5,14 +5,12 @@ import { Link } from "react-router-dom";
 
 function FieldsEditor() {
   return (
+    <>
     <div className="fields-editor">
-      <h1>link to home: <Link to="/">Home</Link></h1>
-      <div style={{display:"flex", width:"100%"}}>
-        <FormEditor />
-        <FormPreviewer />
-      </div>
-      <h1><Link to="/logic">NEXT</Link></h1>
+      <FormEditor />
+      <FormPreviewer />
     </div>
+    </>
   );
 }
 

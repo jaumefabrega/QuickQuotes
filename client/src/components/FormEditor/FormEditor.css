@@ -1,0 +1,41 @@
+.form-editor {
+  width: 420px;
+  /* border-right: 1px solid silver; */
+  height: 100%;
+  /* background-color: #edf1f5; */
+  /* background-color: #f6f8f9; */
+  padding: 20px;
+  max-width: 420px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.form-editor h3 {
+  text-transform: uppercase;
+  color: #555;
+}
+
+.form-editor input[type='color'] {
+  outline: none !important;
+  width: 24px;
+  border: 1px solid transparent !important;
+  border-radius: 50%;
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border:none;
+}
+
+.field.colors-selection div {
+  margin:15px;
+}
+
+.field.colors-selection label {
+  margin-left:15px;
+}

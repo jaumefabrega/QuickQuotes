@@ -18,8 +18,8 @@ const MOCK_FIELDS = [
 
 const INITIAL_FORM_SETTINGS = {
   title: 'Get a quote in 1 minute',
-  backgroundColor: '#e66464',
-  fieldsColor: '#f8f9fb'
+  backgroundColor: '#f3f7f9',
+  fieldsColor: '#ffffff'
 };
 
 const initialState = {

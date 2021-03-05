@@ -1,5 +1,13 @@
+.logic-editor {
+  display:flex;
+  justify-content:space-between;
+  height: 100%;
+  width: 100%;
+}
+
 textarea#the_area {
   resize: none;color:#555;font-size:16px;line-height:30px; position:relative; width:400px; border-width:0;outline:none;
+  height: 80%;
 }
 
 #error_message {
@@ -8,45 +16,88 @@ textarea#the_area {
   position:relative;width:15px;height:15px;border-radius:7.5px;background-color:#ff9b9b;margin-right:10px;margin-top:9px;
 }
 
-
 #error_message.shown {
   opacity:1;
 }
 
+.side-panel {
+  width:25%;position:relative;border-right:1px solid silver; height:100%; text-align: left; padding: 20px 30px;
+}
+
+.side-panel.right {
+  border-right: none;
+  border-left: 1px solid silver;
+}
+
+.side-panel h3 {
+  color: #555;
+}
+
+.side-panel ul li {
+  margin: 10px 0;
+  color: #555;
+}
+
+.side-panel .list-group:not(:first-child) {
+  margin-top: 50px;
+}
+
+.side-panel p {
+  color: #555;
+  line-height: 1.6em;
+  margin-left: 0;
+  margin: 0 auto 30px;
+}
+
+.side-panel .all-suggestions p {
+  margin: 5px;
+  max-width: 90%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.logic-editor-footer {
+  position:absolute; background-color:#85d1c1; background-color:#91c0ef;bottom:0; left:28%;height:65px;width:44%;padding:5px 20px; padding-top:10px;display:flex;justify-content: space-between; align-items:center;
+}
+
+.logic-editor-button-form {
+  position: absolute;
+  bottom: 45px;
+  left: calc(75% - 150px);
+  z-index: 1;
+  border: 4px solid white;
+  border-radius: 4px;
+  opacity:1;
+  box-shadow: 0 15px 35px 0 rgba(42,51,83,.12),0 5px 15px rgba(0,0,0,.06);
+  transition: opacity 0.3s ease-out;
+}
+
+.logic-editor-button-form.disabled {
+  opacity:0;
+  /* border-width:0;
+  box-shadow: none; */
+}
+
+.logic-editor .main-editor > div {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  height:100%;
+}
+
+/* MARKER AND OTHERS */
 .input__marker p {
   margin: 5px 0;
 }
 .input__marker p:first-child {
   margin-top: 0;
 }
-
+/*
 * {
 	box-sizing: border-box;
 	animation: fadeIn 0.5s;
-}
-
-body {
-	text-align: center;
-	font-size: 16px;
-	font-family: 'Lato', sans-serif;
-}
-
-p {
-	max-width: 300px;
-	margin: 0 auto 30px;
-}
-
-h1 {
-	font-size: 2.5rem;
-}
-
-textarea {
-	height: 150px;
-}
-
-.demo-input {
-	margin: 10px auto;
-}
+} */
 
 .use-cases {
 	display: flex;

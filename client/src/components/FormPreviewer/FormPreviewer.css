@@ -1,0 +1,47 @@
+.form-preview {
+  width: calc(100% - 420px);
+  padding: 30px;
+}
+
+.form-preview .field {
+  margin: 20px 0;
+}
+
+.form-preview .field label {
+  color: black;
+}
+
+.form-preview h3 {
+  text-align:center;
+  margin-bottom:30px;
+  font-weight: normal;
+}
+
+.form-preview .field input[type='text'], .form-preview .field input[type='number'] {
+  line-height: 26px;
+  width: fit-content;
+  border: 1px solid silver;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 9px;
+  margin-top: 5px;
+}
+
+.form-preview .field label:not(.checkbox-label) {
+  display:block;
+}
+
+.form-preview .field label.checkbox-label {
+  margin-right: 5px;
+}
+
+.form-preview-actual-form {
+  padding: 10px 30px;
+  border-radius: 10px;
+  width:fit-content;
+  margin:auto;
+  /* border: 1px solid silver; */
+  /* box-shadow: 0 15px 35px 0 rgba(42,51,83,.12),0 5px 15px rgba(0,0,0,.06)!important; */
+  box-shadow: 0px 2px 6px 0px hsla(0, 0%, 0%, 0.2) !important;
+}
+

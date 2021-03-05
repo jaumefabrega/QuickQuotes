@@ -7,8 +7,8 @@ export default function EditableField({field}) {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <div>
+    <div className="field">
+      <div className="field-main-options">
         <input type="text" name="name" value={field.name} onChange={(event) => dispatch(handleFieldChange(event, field._id))} placeholder="Field name" className="field-name" />
         <select name="type" id="field-type" value={field.type} onChange={(event) => dispatch(handleFieldChange(event, field._id))}>
           <option value="text">&#xe8d2;</option>
@@ -18,10 +18,10 @@ export default function EditableField({field}) {
         </select>
       </div>
         {field.type === 'dropdown'
-          ? (<div>
+          ? (<div className="dropdown-options-wrapper">
                 {field.options.map((option, idx) => {
                   return (
-                    <div key={option._id}>
+                    <div className="dropdown-option-wrapper" key={option._id}>
                       <span>{idx+1}.</span>
                       <input type="text" placeholder="Name" name="name" value={option.name} onChange={(event) => dispatch(handleOptionInputChange(event, field._id, option._id))} />
                       <input type="number" placeholder="Value" name="value" value={option.value} onChange={(event) => dispatch(handleOptionInputChange(event, field._id, option._id))} />
@@ -32,11 +32,11 @@ export default function EditableField({field}) {
                     </div>
                   )
                 })}
-                <button onClick={() => dispatch(handleOptionAdd(field._id))}>ADD OPTION</button>
+                <input type="button" onClick={() => dispatch(handleOptionAdd(field._id))} className="button secondary" value="ADD OPTION" />
             </div>)
           : ''
         }
-      <div>
+      <div className="field-settings">
         <img src='/assets/images/trash-can-outline.svg' alt="delete" onClick={() => dispatch(handleFieldDelete(field._id))}/>
       </div>
     </div>
