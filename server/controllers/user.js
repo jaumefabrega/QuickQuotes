@@ -1,6 +1,10 @@
 'use strict';
 
+const Handlebars = require('handlebars');
+const fs = require('fs');
+
 const User = require('../models/user');
+const { parseLogic } = require('../utils/formLogicParser');
 
 function fakeParseLogic (text) {
   return `This is the parsed script:\n\n${text}`;
@@ -37,9 +41,28 @@ exports.getFinalForm = async (req, res) => {
   try {
     const { userId, formId } = req.params;
     const user = await User.findById(userId);
-    // TODO: render template with fields and script
+    const { scriptText, fields, settings } = user.form;
+    console.log('queried final form');
+    const safeFields = fields.map(field => {
+      return {...field, safeName: 'QQ_'+field.name.replace(/ /g, '_').toLowerCase()}; // TODO: this should actually be a function of the util formLogicParser
+    });
+
+    Handlebars.registerHelper('isNotTextVariable', (variable) => variable.type !== 'text');
+    Handlebars.registerHelper('isNotDropdownVariable', (variable) => variable.type !== 'dropdown');
+
+    const htmlSource = fs.readFileSync(__dirname + '/../views/form.html', 'utf8');
+    const htmlTemplate = Handlebars.compile(htmlSource);
+    const htmlToWrite = htmlTemplate({safeFields, settings}, {noEscape: true});
+
+    const JSSource = fs.readFileSync(__dirname + '/../views/form.js', 'utf8');
+    const JSTemplate = Handlebars.compile(JSSource);
+    const JSResult = JSTemplate({htmlToWrite, scriptText}, {noEscape: true});
+
+    // const template = Handlebars.compile(htmlSource);
+    // const result = template({scriptText}, {noEscape: true});
     res.status(200);
-    res.send(user.form);
+    // res.setHeader('content-type', 'applicaton/json');
+    res.send(JSResult);
   } catch (error) {
     console.log('error', error); // eslint-disable-line no-console
     res.sendStatus(500);
@@ -54,7 +77,7 @@ exports.updateForm = async (req, res) => {
     if (updateType === 'fields') {
       user = await User.findByIdAndUpdate(userId, {$set: {'form.fields': payload}}, {new: true});
     } else if (updateType === 'logic') {
-      const newScriptText = fakeParseLogic(payload);
+      const newScriptText = parseLogic(payload);
       user = await User.findByIdAndUpdate(userId, {$set: {'form.logicText': payload, 'form.scriptText': newScriptText}}, {new: true});
     }
     res.status(201);

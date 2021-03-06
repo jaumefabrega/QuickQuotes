@@ -1,0 +1,103 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+  #QQ-form-wrapper { margin:30px;padding: 10px 30px;box-shadow: 0px 2px 6px 0px hsla(0, 0%, 0%, 0.2);border-radius: 10px;background-color: {{settings.backgroundColor}};}
+  #QQ-form .field input, #QQ-form .field select, #QQ-form .field select option { background-color: {{settings.fieldsColor}};}
+  #QQ-price { font-size:35px; line-height:45px;margin-left:5px;text-align:right}
+  #QQ-price.animating { animation-name: swing; animation-duration: 1s; }
+  #QQ-price-whole-digits { font-size:35px; line-height:35px;display:inline-block;margin-left:5px;}
+  #QQ-price-decimal-digits { font-size:15px;;line-height: 45px; display: inline-block; vertical-align: super;}
+  #QQ-price-dollar-sign { font-size:15px;;line-height: 45px; display: inline-block; }
+  @keyframes swing {
+    15% { -webkit-transform: translateX(5px); transform: translateX(5px); opacity:0.4; }
+    20% { opacity:1; }
+    30% { -webkit-transform: translateX(-5px); transform: translateX(-5px); }
+    50% { -webkit-transform: translateX(3px); transform: translateX(3px);}
+    65% { -webkit-transform: translateX(-3px); transform: translateX(-3px);}
+    80% { -webkit-transform: translateX(2px); transform: translateX(2px);}
+    100% { -webkit-transform: translateX(0); transform: translateX(0);}
+  }
+
+#QQ-form-wrapper * {
+  font-family:'Roboto';
+  box-sizing:border-box;
+}
+
+#QQ-form-wrapper .field {
+  margin: 20px 0;
+}
+
+#QQ-form-wrapper .field label {
+  color: black;
+}
+
+#QQ-form-wrapper h3 {
+  text-align:center;
+  margin-bottom:30px;
+  font-weight: normal;
+}
+
+#QQ-form-wrapper .field input[type='text'], #QQ-form-wrapper .field input[type='number'], #QQ-form-wrapper .field select {
+  line-height: 26px;
+  width: fit-content;
+  border: 1px solid silver;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 9px;
+  margin-top: 5px;
+}
+
+#QQ-form-wrapper .field label:not([data-qq-vartype='checkbox']) {
+  display:block;
+}
+
+#QQ-form-wrapper .field label.checkbox-label {
+  margin-right: 5px;
+}
+
+
+#QQ-form-wrapper .field input:not([type='submit']), #QQ-form-wrapper .field select {
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 9px;
+    margin-top: 5px;
+}
+
+#QQ-form-wrapper .field select, #QQ-form-wrapper .field select option {
+    font-family: 'Roboto';
+    font-size: 1em;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga';
+}
+
+</style>
+
+<div id="QQ-form-wrapper">
+  <h2>{{settings.title}}</h2>
+  <form id="QQ-form">
+    {{#each safeFields}}
+    <div class="field">
+      <label for={{this.safeName}} data-qq-vartype="{{this.type}}">{{this.name}}</label>
+      {{#if (isNotDropdownVariable this)}}
+        <input type="{{this.type}}" id={{this.safeName}} oninput="QQupdatePrice()" {{#if (isNotTextVariable this)}}class="QQ-variable-not-text"{{/if}} data-qq-vartype="{{this.type}}" data-qq-varname="{{this.safeName}}">
+      {{else}}
+        <select id={{this.safeName}} onchange="QQupdatePrice()" class="QQ-variable-not-text" data-qq-vartype="{{this.type}}" data-qq-varname="{{this.safeName}}">
+          {{#each this.options}}
+          <option value="{{this.value}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      {{/if}}
+    </div>
+    {{/each}}
+  </form>
+  <p id="QQ-price"><span id="QQ-price-dollar-sign">$</span><span id="QQ-price-whole-digits">--</span><span id="QQ-price-decimal-digits">.--</span></p>
+</div>

@@ -58,7 +58,7 @@ function parseVariable (text) {
 }
 
 // Gets a text sentence and returns its corresponding line of code, ending with ";"
-// variable names will always have the prefix QQ_ and the rest will always be lowercase
+// variable names will always have the prefix QQ_ and the rest will always be lowercase (replacing spaces with underscores)
 function parseSentence (sentence) {
   const sentenceType = identifySentenceType(sentence);
   switch (sentenceType) {
@@ -118,42 +118,13 @@ function parseLogic (text) {
   }
   finalScript.push('return Math.round(QQ_final_quote*100)/100;');
 
-  return finalScript.join('\n'); // FIX: should actually join by '', using line-break for testing only
+  return finalScript.join(''); // FIX: should actually join by '', using line-break for testing only
 
   // return `function QQcalculateQuote() {
   //   ${finalScript.join('\n')}
   // }`; // FIX: should actually join by '', using line-break for testing only
 }
 
-console.log(parseLogic(TEST_TEXT));
-console.log('------------------');
-
-
-`Take the number of trees. Add 100 to it. Divide it by the property value of type of tree job. Subtract 99%. This is Part 1.
-
-Take the grass square meters. Divide romano di merda by 10'3. Add 20%. If tHe urgent is checked, Add 100. This is Part 2.
-
-Take Part 1. Add Part 2 to it. This is the Final Quote.`;
-
-QQ_number_of_trees = 2;
-QQ_type_of_tree_job = 3;
-QQ_grass_square_meters = 10;
-QQ_romano_di_merda = 1;
-QQ_urgent = true;
-
-function QQupdatePrice() {
-
-  const allQQnonTextVarElements = document.querySelectorAll('#QQ-form .QQ-variable-not-text');
-
-  const scr = [];
-  for (const element of allQQnonTextVarElements) {
-    scr.push(`let ${element.getAttribute('data-QQ-varname')} = ${element.getAttribute('data-QQ-vartype') === 'checkbox' ? element.checked : element.value};`);
-  }
-
-  const FF = `function QQdoMagic() { ${src.join('\n')} function calc() { ${parseLogic(TEST_TEXT)}}  console.log(calc());  }`;
-  // FF();
-  // const F = new Function (parseLogic(TEST_TEXT));
+module.exports = {
+  parseLogic
 }
-console.log('THE FUCKING FINAL QUOTE IS:',QQupdatePrice());
-
-// export default parseLogic;
