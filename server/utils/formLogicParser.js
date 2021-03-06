@@ -1,9 +1,8 @@
-const MAX_SUGGESTION_LENGTH = 1;
 const TEST_TEXT = `Take the number of trees. Add 100 to it. Divide it by the property value of type of tree job. Subtract 99%. This is Part 1.
 
 Take the grass square meters. Divide romano di merda by 10'3. Add 20%. If tHe urgent is checked, Add 100. This is Part 2.
 
-Take Part 1. Add Part 2 to it. Round it to the nearest 1. This is the Final Quote.`;
+Take Part 1. Add Part 2 to it. This is the Final Quote.`;
 
 const operators = {
   'ADD': {sign: '+', separator: 'to'},
@@ -55,13 +54,12 @@ function parseVariable (text) {
   const isNumber = /^[\d\.%]+$/.test(variable); // FIX dot and % should be only 0 or 1, not more. Use the pipe character or sth to solve it
   if (isNumber) return variable.includes('%') ? +parseFloat(variable)/100+'*currentValue' : parseFloat(variable); // FIX REVIEW review that this then is used correctly in the parseSentence
   if (variable.startsWith('property value of ')) variable = variable.slice(18);
-  return 'QQ-'+variable.replace(/ /g, '_');
+  return 'QQ_'+variable.replace(/ /g, '_');
 }
 
 // Gets a text sentence and returns its corresponding line of code, ending with ";"
-// variable names will always have the prefix QQ- and the rest will always be lowercase
+// variable names will always have the prefix QQ_ and the rest will always be lowercase
 function parseSentence (sentence) {
-  console.log('gonna process', sentence);
   const sentenceType = identifySentenceType(sentence);
   switch (sentenceType) {
     case 'TAKE':
@@ -89,8 +87,7 @@ function parseSentence (sentence) {
       sentence = sentence.slice(operatorName.length+1).toLowerCase();
       if (sentence.startsWith(operator.separator)) sentence = 'it ' + sentence; // it means that it is of the form 'Multiply by Y' (no x, so the following split would not work)
       let [x, y] = sentence.split(` ${operator.separator} `); // FIX: what if a variable name contains ' by ' (or ' from ' or ' to ')??!! FIX FIX
-      console.log('.firstX.....',x)
-      x = parseVariable(x);console.log('.....x:',x);
+      x = parseVariable(x);
       y = parseVariable(y);
       if (swapVariables) [x, y] = [y, x];
       const cvInitializationCode = x !== 'currentValue' ? `currentValue = ${x};` : '';
@@ -98,7 +95,6 @@ function parseSentence (sentence) {
     case 'IF':
       sentence = sentence.slice(3);
       let [conditionPart, operationPart] = sentence.split(', ');
-      console.log(conditionPart,'--------------','$$'+operationPart+'$$');
       const operation = parseSentence(operationPart);
       const variableName = parseVariable(conditionPart.replace(/ is (not )?checked$/i, ''));
       const shouldNegateIt = / is not checked$/i.test(conditionPart);
@@ -120,14 +116,44 @@ function parseLogic (text) {
   for (const sentence of sentences) {
     finalScript.push(parseSentence(sentence));
   }
-  finalScript.push('console.log(QQ-final_quote);');
+  finalScript.push('return Math.round(QQ_final_quote*100)/100;');
 
   return finalScript.join('\n'); // FIX: should actually join by '', using line-break for testing only
+
+  // return `function QQcalculateQuote() {
+  //   ${finalScript.join('\n')}
+  // }`; // FIX: should actually join by '', using line-break for testing only
 }
 
 console.log(parseLogic(TEST_TEXT));
 console.log('------------------');
-// const F = new Function (parseLogic(TEST_TEXT));
-// F();
+
+
+`Take the number of trees. Add 100 to it. Divide it by the property value of type of tree job. Subtract 99%. This is Part 1.
+
+Take the grass square meters. Divide romano di merda by 10'3. Add 20%. If tHe urgent is checked, Add 100. This is Part 2.
+
+Take Part 1. Add Part 2 to it. This is the Final Quote.`;
+
+QQ_number_of_trees = 2;
+QQ_type_of_tree_job = 3;
+QQ_grass_square_meters = 10;
+QQ_romano_di_merda = 1;
+QQ_urgent = true;
+
+function QQupdatePrice() {
+
+  const allQQnonTextVarElements = document.querySelectorAll('#QQ-form .QQ-variable-not-text');
+
+  const scr = [];
+  for (const element of allQQnonTextVarElements) {
+    scr.push(`let ${element.getAttribute('data-QQ-varname')} = ${element.getAttribute('data-QQ-vartype') === 'checkbox' ? element.checked : element.value};`);
+  }
+
+  const FF = `function QQdoMagic() { ${src.join('\n')} function calc() { ${parseLogic(TEST_TEXT)}}  console.log(calc());  }`;
+  // FF();
+  // const F = new Function (parseLogic(TEST_TEXT));
+}
+console.log('THE FUCKING FINAL QUOTE IS:',QQupdatePrice());
 
 // export default parseLogic;
