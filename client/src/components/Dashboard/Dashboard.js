@@ -64,8 +64,8 @@ function copyTextToClipboard(text) {
 
 export default function Dashboard() {
   let contentElement;
-  const formFields = useSelector(state => state.formFields);
-  const formSettings = useSelector(state => state.formSettings);
+  const formFields = useSelector(state => state.form.fields);
+  const formSettings = useSelector(state => state.form.settings);
 
   if (formFields.length) {
     contentElement = (

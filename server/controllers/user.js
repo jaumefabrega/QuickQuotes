@@ -2,11 +2,10 @@
 
 const Handlebars = require('handlebars');
 const fs = require('fs');
-
 const User = require('../models/user');
 const { parseLogic } = require('../utils/formLogicParser');
 
-function fakeParseLogic (text) {
+function fakeParseLogic (text) { // For testing only
   return `This is the parsed script:\n\n${text}`;
 }
 
@@ -26,8 +25,6 @@ exports.createUser = async (req, res) => {
 exports.getUserData = async (req, res) => {
   try {
     const { userId } = req.params;
-    console.log(req.params);
-    console.log('looking for user', userId);
     const user = await User.findById(userId);
     res.status(200);
     res.send(user);
@@ -58,8 +55,6 @@ exports.getFinalForm = async (req, res) => {
     const JSTemplate = Handlebars.compile(JSSource);
     const JSResult = JSTemplate({htmlToWrite, scriptText}, {noEscape: true});
 
-    // const template = Handlebars.compile(htmlSource);
-    // const result = template({scriptText}, {noEscape: true});
     res.status(200);
     // res.setHeader('content-type', 'applicaton/json');
     res.send(JSResult);

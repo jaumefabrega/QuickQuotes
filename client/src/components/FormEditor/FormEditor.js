@@ -5,8 +5,8 @@ import { handleFormSettingsChange, handleFieldAdd } from '../../actions'
 import './FormEditor.css'
 
 export default function FormEditor() {
-  const fields = useSelector((state) => state.formFields)
-  const formSettings = useSelector((state) => state.formSettings)
+  const fields = useSelector((state) => state.form.fields)
+  const formSettings = useSelector((state) => state.form.settings)
   const dispatch = useDispatch()
 
   return (
@@ -17,7 +17,7 @@ export default function FormEditor() {
         </div>
       <h3>Fields</h3>
       <div className="event-list" id="list">
-        { fields.length ? fields.map(field => <EditableField key={field._id} field={field} />) : <p className="empty-warning">Go create some fields</p> }
+        { fields.length ? fields.map(field => <EditableField key={field.id} field={field} />) : <p className="empty-warning">Go create some fields</p> }
       </div>
       <div className="wrapper submit">
         <input type="button" value="Add field" className="button primary" onClick={() => dispatch(handleFieldAdd())} />

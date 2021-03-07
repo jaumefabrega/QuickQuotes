@@ -58,7 +58,7 @@ export default function LogicEditor() {
     }
   };
 
-  const fields = useSelector((state) => state.formFields);
+  const fields = useSelector((state) => state.form.fields);
   let [localState, setLocalState] = useState(INITIAL_LOCAL_STATE);
 
   // INITIALIZE SYNTAX

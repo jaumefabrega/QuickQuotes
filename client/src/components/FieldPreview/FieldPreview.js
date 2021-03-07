@@ -5,8 +5,8 @@ export default function FieldPreview({field, settings}) {
     fieldElement = (
       <div className="field">
         <label>{field.name}</label>
-        <select name={field._id} id={field._id} style={{backgroundColor:settings.fieldsColor, fontFamily:'Roboto', fontSize:'1em', color:'black'}}>
-            {field.options.map(option => <option key={option._id} value={option.name} style={{backgroundColor:settings.fieldsColor, fontFamily:'Roboto', fontSize:'1em', color:'black'}}>{option.name}</option>)}
+        <select name={field.id} id={field.id} style={{backgroundColor:settings.fieldsColor, fontFamily:'Roboto', fontSize:'1em', color:'black'}}>
+            {field.options.map(option => <option key={option.id} value={option.name} style={{backgroundColor:settings.fieldsColor, fontFamily:'Roboto', fontSize:'1em', color:'black'}}>{option.name}</option>)}
         </select>
       </div>
     );

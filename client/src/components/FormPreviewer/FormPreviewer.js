@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux'
 import './FormPreviewer.css'
 
 export default function FormPreviewer() {
-  const fields = useSelector((state) => state.formFields)
-  const formSettings = useSelector((state) => state.formSettings)
+  const fields = useSelector((state) => state.form.fields)
+  const formSettings = useSelector((state) => state.form.settings)
 
   return (
     <div className="form-preview center-wrapper">
@@ -14,7 +14,7 @@ export default function FormPreviewer() {
       <div className="form-preview-actual-form" style={{backgroundColor:formSettings.backgroundColor}}>
         <h2>{formSettings.title}</h2>
         <div className="fields-preview-wrapper">
-          { fields.length ? fields.map(field => <FieldPreview field={field} key={field._id} settings={formSettings} />) : <p className="empty-warning">As you add fields, you'll see a preview here</p> }
+          { fields.length ? fields.map(field => <FieldPreview field={field} key={field.id} settings={formSettings} />) : <p className="empty-warning">As you add fields, you'll see a preview here</p> }
         </div>
       </div>
       <Link to="/logic" style={{position:'fixed', bottom:0, right:20}}>
