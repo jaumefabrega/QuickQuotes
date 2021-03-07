@@ -48,7 +48,7 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
     case 'HANDLE_FIELD_ADD':
       return {
         ...state,
-        form: {...state.form, fields: [...state.form.fields, {id:uuidv4(), name:"", type:"", options:[]}]}
+        form: {...state.form, fields: [...state.form.fields, {id:uuidv4(), name:"", type:"text", options:[]}]}
       }
 
     case 'HANDLE_OPTION_ADD':
@@ -93,7 +93,7 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
         form: {...state.form, settings: {...state.form.settings, [action.payload.target.name]: action.payload.target.value}}
       }
 
-    //------------------------------- THUNK ACTIONS
+    //------------------------------- THUNK ACTIONS for user data fetching
     case 'FETCH_USER_DATA_BEGIN':
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -127,6 +127,42 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
         error: action.payload.error,
         ...EMPTY_USER_DATA
       };
+
+      //------------------------------- THUNK ACTIONS for save form
+      case 'SAVE_FORM_DATA_BEGIN':
+        // Mark the state as "loading" so we can show a spinner or something
+        // Also, reset any errors. We're starting fresh.
+        return {
+          ...state,
+          loading: true,
+          error: null
+        };
+
+      case 'SAVE_FORM_DATA_SUCCESS':
+        // All done: set loading "false".
+        // Also, replace the items with the ones from the server
+        // console.log('reducer says:', action.payload);
+        console.log('success of reducer. Returned userData is', action.payload)
+        return {
+          ...state,
+          loading: false,
+          ...action.payload
+        };
+
+      case 'SAVE_FORM_DATA_FAILURE':
+        // The request failed. It's done. So set loading to "false".
+        // Save the error, so we can display it somewhere.
+        // Since it failed, we don't have items to display anymore, so set `items` empty.
+        //
+        // This is all up to you and your app though:
+        // maybe you want to keep the items around!
+        // Do whatever seems right for your use case.
+        return {
+          ...state,
+          loading: false,
+          error: action.payload.error // FIX: should actually display the errors somewhere in the App
+        };
+
 
     default:
       return state

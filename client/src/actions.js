@@ -94,3 +94,37 @@ export const fetchUserDataFailure = error => ({
   type: 'FETCH_USER_DATA_FAILURE',
   payload: { error }
 });
+
+
+// SAVE FORM DATA
+export function saveFormData({userId, updateType, payload}) {
+  console.log('fetch data of user', userId);
+  return dispatch => {
+    dispatch(saveFormDataBegin());
+    return api.saveForm({userId, updateType, payload})
+      .then(res => {
+        console.log('got it');
+        dispatch(saveFormDataSuccess(res));
+        return res;
+      })
+      .catch(error => {console.log('errore', error);dispatch(saveFormDataFailure(error))});
+  };
+}
+
+export const saveFormDataBegin = () => ({
+  type: 'SAVE_FORM_DATA_BEGIN'
+});
+
+export const saveFormDataSuccess = userData => ({
+  type: 'SAVE_FORM_DATA_SUCCESS',
+  payload: userData
+});
+
+export const saveFormDataFailure = error => ({
+  type: 'SAVE_FORM_DATA_FAILURE',
+  payload: { error }
+});
+
+
+
+

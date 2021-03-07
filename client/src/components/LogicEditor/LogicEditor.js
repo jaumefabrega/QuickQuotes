@@ -1,10 +1,11 @@
 import { useHistory } from "react-router-dom";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import Syntax from '../../utils/syntax';
 import { showPositionMarker, getSelectionArea } from '../../utils/autcompleteBox';
 import './LogicEditor.css'
 import ListByGroups from '../ListByGroups/ListByGroups'
+import { saveFormData } from '../../actions'
 
 
 const INITIAL_LOCAL_STATE = {
@@ -19,10 +20,11 @@ const INITIAL_LOCAL_STATE = {
 
 
 export default function LogicEditor() {
-
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const saveLogic = () => {
+    dispatch(saveFormData({userId: '604358dd2b586d1e800fb8fd', updateType: 'logic', payload:localState.textareaText}));
     history.push('/');
   }
 
