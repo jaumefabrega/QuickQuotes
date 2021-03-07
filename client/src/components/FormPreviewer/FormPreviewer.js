@@ -14,8 +14,9 @@ export default function FormPreviewer() {
   const loading = useSelector(state => state.loading);
 
   const handleButtonClick = () => {
-    dispatch(saveFormData({userId: '604358dd2b586d1e800fb8fd', updateType: 'fields', payload:fields}));
+    dispatch(saveFormData({userId: '604358dd2b586d1e800fb8fd', updateType: 'fields', payload:{fields, settings:formSettings}}));
   }
+
   return (
     <div className="form-preview center-wrapper">
       <h3>Preview</h3>

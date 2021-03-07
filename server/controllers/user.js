@@ -70,7 +70,7 @@ exports.updateForm = async (req, res) => {
     const { userId, updateType, payload } = req.body;
     let user;
     if (updateType === 'fields') {
-      user = await User.findByIdAndUpdate(userId, {$set: {'form.fields': payload}}, {new: true});
+      user = await User.findByIdAndUpdate(userId, {$set: {'form.fields': payload.fields, 'form.settings': payload.settings}}, {new: true});
     } else if (updateType === 'logic') {
       const newScriptText = parseLogic(payload);
       user = await User.findByIdAndUpdate(userId, {$set: {'form.logicText': payload, 'form.scriptText': newScriptText}}, {new: true});
