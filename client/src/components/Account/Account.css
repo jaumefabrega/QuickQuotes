@@ -1,4 +1,8 @@
 .account {
-  width: 50%;
-  margin:auto;
+  /* width: 50%; */
+  margin: auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 65px;
 }

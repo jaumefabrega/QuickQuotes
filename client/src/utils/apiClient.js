@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:3001';
 
 function getUserData (userId) {
-  return fetchRequest(`/user/${userId}`);
+  return fetchRequest(`/user/${userId}`).then(sleeper(2000));
 }
 
 function saveForm ({userId, updateType, payload}) { // type must be 'fields' or 'logic', because server handles them differently (to avoid re-parsing logic text every time. Maybe I should change this)
@@ -25,6 +25,13 @@ function fetchRequest (path, options) {
     .then(res => res.status <= 400 ? res : Promise.reject())
     .then(res => res.status === 204 ? res : res.json())
     .catch(err => console.error(`Error fetching ${path}:`, err))
+}
+
+// Helper function for testing (loading icons, etc)
+function sleeper(ms) {
+  return function(x) {
+    return new Promise(resolve => setTimeout(() => resolve(x), ms));
+  };
 }
 
 export default {

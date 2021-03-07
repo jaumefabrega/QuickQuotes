@@ -28,7 +28,7 @@ function App() {
               renders the first one that matches the current URL. */}
           <Header />
           {loading
-            ? (<h1>loading...</h1>)
+            ? (<div class="loader-wrapper"><div class="lds-ripple"><div></div><div></div></div></div>)
             : (<Switch>
                 <Route path="/fields">
                   <FieldsEditor />

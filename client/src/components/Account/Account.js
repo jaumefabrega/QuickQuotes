@@ -6,7 +6,10 @@ export default function Account() {
   const useremail = useSelector(state => state.email);
   return (
     <div className="account center-wrapper">
-      <h1>Hello {useremail}</h1>
+      <div>
+        <h1>Hello {useremail}</h1>
+        <p>We'll be more than happy to speak with you at</p><p>support@quickQuotesOnlines</p>
+      </div>
     </div>
   )
 }
