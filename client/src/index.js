@@ -3,36 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducer";
+import thunk from "redux-thunk";
 
 import {
   BrowserRouter as Router,
 } from "react-router-dom"
 
-import api from './utils/apiClient';
+const store = createStore(reducer, applyMiddleware(thunk));
 
-api.getUserData('604358dd2b586d1e800fb8fd')
-  .then( res => {
-    console.log(res);
-    const store = createStore(reducer, res);
-    ReactDOM.render(
-      <React.StrictMode>
-        <Provider store={store}>
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
 
-        <Router>
-          <App />
-        </Router>
+    <Router>
+      <App />
+    </Router>
 
-        </Provider>
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
-  })
-  .catch(error => console.log(error))
-
-
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

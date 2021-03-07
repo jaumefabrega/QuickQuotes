@@ -1,3 +1,4 @@
+import api from './utils/apiClient';
 
 export function handleFieldChange({target}, fieldId) {
   return {
@@ -62,3 +63,34 @@ export function handleFormSettingsChange({target}) {
     }
   }
 }
+
+/* async START */
+
+// FETCH USER DATA
+export function fetchUserData(userId) {
+  console.log('fetch data of user', userId);
+  return dispatch => {
+    dispatch(fetchUserDataBegin());
+    return api.getUserData(userId)
+      .then(res => {
+        console.log('got it');
+        dispatch(fetchUserDataSuccess(res));
+        return res;
+      })
+      .catch(error => {console.log('errore', error);dispatch(fetchUserDataFailure(error))});
+  };
+}
+
+export const fetchUserDataBegin = () => ({
+  type: 'FETCH_USER_DATA_BEGIN'
+});
+
+export const fetchUserDataSuccess = userData => ({
+  type: 'FETCH_USER_DATA_SUCCESS',
+  payload: userData
+});
+
+export const fetchUserDataFailure = error => ({
+  type: 'FETCH_USER_DATA_FAILURE',
+  payload: { error }
+});

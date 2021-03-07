@@ -25,10 +25,12 @@ const INITIAL_FORM_SETTINGS = {
 const initialState = {
   formFields: MOCK_FIELDS,
   formSettings: INITIAL_FORM_SETTINGS
-}
+};
 
 
-export default function reducer (state = initialState, action) {
+const EMPTY_USER_DATA = {loading:true, email: '', password:'', form: {fields:[], settings:{title:'', backgroundColor:'', fieldsColor:''}, logicText:'', scriptText:''}}; // should actually NOT send password from server either
+
+export default function reducer (state = EMPTY_USER_DATA, action) {
 
   switch (action.type) {
     case 'HANDLE_FIELD_CHANGE':
@@ -91,6 +93,40 @@ export default function reducer (state = initialState, action) {
         form: {...state.form, settings: {...state.form.settings, [action.payload.target.name]: action.payload.target.value}}
       }
 
+    //------------------------------- THUNK ACTIONS
+    case 'FETCH_USER_DATA_BEGIN':
+      // Mark the state as "loading" so we can show a spinner or something
+      // Also, reset any errors. We're starting fresh.
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+
+    case 'FETCH_USER_DATA_SUCCESS':
+      // All done: set loading "false".
+      // Also, replace the items with the ones from the server
+      // console.log('reducer says:', action.payload);
+      return {
+        ...state,
+        loading: false,
+        ...action.payload
+      };
+
+    case 'FETCH_USER_DATA_FAILURE':
+      // The request failed. It's done. So set loading to "false".
+      // Save the error, so we can display it somewhere.
+      // Since it failed, we don't have items to display anymore, so set `items` empty.
+      //
+      // This is all up to you and your app though:
+      // maybe you want to keep the items around!
+      // Do whatever seems right for your use case.
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        ...EMPTY_USER_DATA
+      };
 
     default:
       return state

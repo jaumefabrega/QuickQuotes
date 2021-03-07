@@ -59,7 +59,8 @@ export default function LogicEditor() {
   };
 
   const fields = useSelector((state) => state.form.fields);
-  let [localState, setLocalState] = useState(INITIAL_LOCAL_STATE);
+  const savedLogicText = useSelector(state => state.form.logicText);
+  let [localState, setLocalState] = useState({...INITIAL_LOCAL_STATE, textareaText:savedLogicText});
 
   // INITIALIZE SYNTAX
   useEffect(() => {
