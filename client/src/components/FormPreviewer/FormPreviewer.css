@@ -1,6 +1,7 @@
 .form-preview {
   width: calc(100% - 420px);
   padding: 30px;
+  overflow: scroll;
 }
 
 .form-preview .field {
