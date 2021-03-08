@@ -1,34 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-// const MOCK_FIELDS = [
-//   {_id:"2c5ea4c0-4067-11e9-8bad-9b1deb4d3b7d", name:"something", type:"number", options:[]},
-//   {_id:"710b962e-041c-11e1-9234-0123456789ab", name:"Square meters", type:"number", options:[]},
-//   {_id:"710b962e-041c-11e1-9234-0123656789xq", name:"Floor type", type:"dropdown", options:[{name:"posh", value:35, _id:"1"}, {name:"medium", value:25, _id:"2"}, {name:"cheap", value:5, _id:"3"}]},
-//   {_id:"6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b", name:"kilometers", type:"number", options:[]},
-// ];
-
-const MOCK_FIELDS = [
-  {id:"2c5ea4c0-4067-11e9-8bad-9b1deb4d3b7d", name: 'Square Meters', type: 'number', options:[]},
-  {id:"710b962e-041c-11e1-9234-0123456789ab", name: 'kilometers', type: 'number', options:[]},
-  {id:"710b962e-041c-11e1-9234-0123656789xq", name: 'number of trees', type: 'number', options:[]},
-  {id:"6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b", name: 'Urgent', type: 'checkbox', options:[]},
-  {id:"6ec0bd7f-11c0-43da-975e-2a8ad9ebae23", name: 'On weekend', type: 'checkbox', options:[]},
-  {id:"6ec0qr7f-11c0-43da-975e-2a8ad9ebae0b", name: 'Floor type', type: 'dropdown', options: [{name: 'Posh', value:23, id:"1"}, {name: 'Medium', value:10, id:"2"}, {name: 'Cheapest', value:2, id:"3"}]},
-]
-
-const INITIAL_FORM_SETTINGS = {
-  title: 'Get a quote in 1 minute',
-  backgroundColor: '#f3f7f9',
-  fieldsColor: '#ffffff'
-};
-
-const initialState = {
-  formFields: MOCK_FIELDS,
-  formSettings: INITIAL_FORM_SETTINGS
-};
-
-
-const EMPTY_USER_DATA = {loading:true, email: '', password:'', form: {fields:[], settings:{title:'', backgroundColor:'', fieldsColor:''}, logicText:'', scriptText:''}}; // should actually NOT send password from server either
+const EMPTY_USER_DATA = {loading:true, email: '', password:'', form: {fields:[], settings:{title:'', backgroundColor:'#f3f7f9', fieldsColor:'#ffffff'}, logicText:'', scriptText:''}}; // should actually NOT send password from server either
 
 export default function reducer (state = EMPTY_USER_DATA, action) {
 

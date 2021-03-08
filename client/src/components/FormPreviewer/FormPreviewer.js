@@ -1,5 +1,4 @@
 import FieldPreview from '../FieldPreview/FieldPreview'
-import Header from '../Header/Header'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import './FormPreviewer.css'
@@ -11,7 +10,6 @@ export default function FormPreviewer() {
   const dispatch = useDispatch();
   const fields = useSelector((state) => state.form.fields)
   const formSettings = useSelector((state) => state.form.settings)
-  const loading = useSelector(state => state.loading);
 
   const handleButtonClick = () => {
     dispatch(saveFormData({userId: '604358dd2b586d1e800fb8fd', updateType: 'fields', payload:{fields, settings:formSettings}}));

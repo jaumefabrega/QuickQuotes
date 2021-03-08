@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import './Account.css'
 import { useSelector } from 'react-redux'
 
