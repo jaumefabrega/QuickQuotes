@@ -13,7 +13,7 @@ function QQupdatePrice() {
 function QQrequestService() {
   const formWrapper = document.getElementById("QQ-form-wrapper");
   formWrapper.innerHTML = '';
-  formWrapper.innerHTML = '<p style="text-align:center">Your request has been sent.<p style="text-align:center">We will get back to you by email.</p><p style="text-align:center">Thank you.</p>';
+  formWrapper.innerHTML = '<div id="submit-message"><p style="text-align:center">Your request has been sent.<p style="text-align:center">We will get back to you by email.</p><p style="text-align:center">Thank you.</p></div>';
 }
 
 document.write(html);

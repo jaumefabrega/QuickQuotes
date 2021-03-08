@@ -1,7 +1,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
-  #QQ-form-wrapper { margin:30px;padding: 10px 30px;box-shadow: 0px 2px 6px 0px hsla(0, 0%, 0%, 0.2);border-radius: 10px;background-color: {{settings.backgroundColor}};}
+  #QQ-form-wrapper { width: 307.212px;margin:30px;padding: 10px 30px;box-shadow: 0px 2px 6px 0px hsla(0, 0%, 0%, 0.2);border-radius: 10px;background-color: {{settings.backgroundColor}};}
+  #QQ-form-wrapper h2 { font-size: 24px;margin: 20px 0;}
+  #QQ-form-wrapper input:focus,#QQ-form-wrapper input:active  { outline:none;}
   #QQ-form .field input, #QQ-form .field select, #QQ-form .field select option { background-color: {{settings.fieldsColor}};}
   #QQ-price { font-size:35px; margin-left:5px;text-align:right;margin:0}
   #QQ-price.animating { animation-name: swing; animation-duration: 1s; }
@@ -28,8 +30,14 @@
     margin: 20px 0;
   }
 
+  #QQ-form-wrapper #submit-message {
+    margin: 20px 0;
+  }
+
   #QQ-form-wrapper .field label {
     color: black;
+    font-size: 16px;
+    margin-bottom: 0;
   }
 
   #QQ-form-wrapper h3 {
