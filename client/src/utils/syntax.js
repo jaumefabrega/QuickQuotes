@@ -91,7 +91,7 @@ class Syntax {
           break;
         case 'dropdown':
           if (variable.options.length) Object.keys(variable.options[0]).forEach(optionName => {
-            if (optionName !== 'name' && optionName !== '_id') {
+            if (optionName !== 'name' && optionName !== 'id') {
               this.initialNumericVariables.push(`property ${optionName} of ${variable.name}`);
             }
           });
