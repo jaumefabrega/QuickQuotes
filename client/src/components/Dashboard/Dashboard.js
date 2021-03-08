@@ -66,6 +66,7 @@ export default function Dashboard() {
 
   const getEncodedCSVLeads = () => {
     let csvContent = "data:text/csv;charset=utf-8,";
+    if (analytics.leads.length) csvContent += Object.keys(analytics.leads[0]).join(',')+'\r\n';
     analytics.leads.forEach(lead => {
       csvContent += Object.values(lead).join(',')+'\r\n';
     });
@@ -114,7 +115,7 @@ export default function Dashboard() {
             <table>
               <tbody>
                 <tr>
-                  <td>Last 30 days</td>
+                  <td>Performance</td>
                   <td className="secondary">{analytics.visits} visits</td>
                   <td className="secondary">{analytics.leads.length} leads</td>
                   <td className="secondary">{analytics.visits ? (analytics.calculations/analytics.visits*100).toFixed(2) : "--"}% conv.</td>
