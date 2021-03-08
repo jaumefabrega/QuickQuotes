@@ -63,6 +63,15 @@ function copyTextToClipboard(text) {
 
 
 export default function Dashboard() {
+
+  const getEncodedCSVLeads = () => {
+    let csvContent = "data:text/csv;charset=utf-8,";
+    analytics.leads.forEach(lead => {
+      csvContent += Object.values(lead).join(',')+'\r\n';
+    });
+    return encodeURI(csvContent);
+  }
+
   let contentElement;
   const formFields = useSelector(state => state.form.fields);
   const formSettings = useSelector(state => state.form.settings);
@@ -107,9 +116,9 @@ export default function Dashboard() {
                 <tr>
                   <td>Last 30 days</td>
                   <td className="secondary">{analytics.visits} visits</td>
-                  <td className="secondary">{analytics.calculations} calculations</td>
+                  {/* <td className="secondary">{analytics.calculations} calculations</td> */}
                   <td className="secondary">{analytics.leads.length} leads</td>
-                  <td className="secondary" style={{width:'36px'}}><img id="account" src="assets/images/download-24px.svg" style={{height:'70%'}} alt="tbd"/></td>
+                  <td className="secondary" style={{width:'36px'}}><a download="QuickQuotes Leads.csv" href={getEncodedCSVLeads()}><img id="account" src="assets/images/download-24px.svg" style={{height:'70%'}} alt="download leads button"/></a></td>
                 </tr>
               </tbody>
             </table>
