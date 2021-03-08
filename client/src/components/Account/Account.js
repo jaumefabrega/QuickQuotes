@@ -7,7 +7,7 @@ export default function Account() {
     <div className="account center-wrapper">
       <div>
         <h1>Hello {useremail}</h1>
-        <p>We'll be more than happy to speak with you at</p><p>support@quickQuotesOnlines</p>
+        <p>We'll be more than happy to speak with you at</p><p>support@QuickQuotesOnline.com</p>
       </div>
     </div>
   )

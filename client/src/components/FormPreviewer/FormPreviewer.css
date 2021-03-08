@@ -12,9 +12,10 @@
   color: black;
 }
 
-.form-preview h3 {
+.form-preview > h3 {
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom: 20px;
+  margin-top: 5px;
   font-weight: normal;
 }
 
@@ -46,3 +47,29 @@
   box-shadow: 0px 2px 6px 0px hsla(0, 0%, 0%, 0.2) !important;
 }
 
+
+#QQ-price { font-size:35px; margin-left:5px;text-align:right;margin:0}
+#QQ-price.animating { animation-name: swing; animation-duration: 1s; }
+#QQ-price-whole-digits { font-size:35px; line-height:35px;display:inline-block;margin-left:5px;}
+#QQ-price-decimal-digits { font-size:15px; display: inline-block; vertical-align: super;}
+#QQ-price-dollar-sign { font-size:15px; display: inline-block; }
+.QQ-button.primary {
+  padding: 0.75rem;
+  font-size:1em;
+  border-width: 0;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: #91c0ef;
+  box-shadow:0px 2px 6px 0px hsl(0deg 0% 0% / 20%)
+}
+
+.QQ-button.primary:disabled {
+  opacity: 0.3;
+}
+
+.QQ-button.primary:focus, .QQ-button.primary:active {
+  outline:none;
+}
