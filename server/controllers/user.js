@@ -89,9 +89,7 @@ exports.postAnalytics = async (req, res) => {
   try {
     const { userId, analyticType, payload } = req.body;
     let user;
-    if (analyticType === 'calculation') {
-      user = await User.findByIdAndUpdate(userId, {$inc : {'analytics.calculations' : 1}}, {new: true});
-    } else if (analyticType === 'lead') {
+    if (analyticType === 'lead') {
       user = await User.findByIdAndUpdate(userId, {$push: {'analytics.leads': {...payload, timestamp: new Date()}}}, {new: true});
     }
     res.status(201);

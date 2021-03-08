@@ -117,7 +117,7 @@ export default function Dashboard() {
                   <td>Last 30 days</td>
                   <td className="secondary">{analytics.visits} visits</td>
                   <td className="secondary">{analytics.leads.length} leads</td>
-                  <td className="secondary">{analytics.visits ? (analytics.calculations/analytics.visits*100).toFixed(2) : "--"} % conv.</td>
+                  <td className="secondary">{analytics.visits ? (analytics.calculations/analytics.visits*100).toFixed(2) : "--"}% conv.</td>
                   <td className="secondary" style={{width:'36px'}}><a download="QuickQuotes Leads.csv" href={getEncodedCSVLeads()}><img id="account" src="assets/images/download-24px.svg" style={{height:'70%'}} alt="download leads button"/></a></td>
                 </tr>
               </tbody>
