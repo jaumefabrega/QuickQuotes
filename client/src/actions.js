@@ -64,6 +64,12 @@ export function handleFormSettingsChange({target}) {
   }
 }
 
+export function toggleZenMode() {
+  return {
+    type: 'TOGGLE_ZEN_MODE'
+  }
+}
+
 /* async START */
 
 // FETCH USER DATA

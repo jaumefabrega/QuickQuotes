@@ -63,6 +63,8 @@ export default function LogicEditor() {
   const fields = useSelector((state) => state.form.fields);
   const savedLogicText = useSelector(state => state.form.logicText);
   let [localState, setLocalState] = useState({...INITIAL_LOCAL_STATE, textareaText:savedLogicText});
+  const zenMode = useSelector((state) => state.zenMode);
+
 
   // INITIALIZE SYNTAX
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function LogicEditor() {
   useEffect(() => {});
 
   return (
-      <div className="logic-editor">
+      <div className={zenMode ? "zen-mode logic-editor" : "logic-editor"}>
       {/* <h1><Link to="/">Home</Link></h1> */}
         <div className="side-panel">
           <ListByGroups elements={fields} groupIdentifier='type' />

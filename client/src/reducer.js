@@ -93,6 +93,12 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
         form: {...state.form, settings: {...state.form.settings, [action.payload.target.name]: action.payload.target.value}}
       }
 
+    case 'TOGGLE_ZEN_MODE':
+      return {
+        ...state,
+        zenMode: !state.zenMode
+      }
+
     //------------------------------- THUNK ACTIONS for user data fetching
     case 'FETCH_USER_DATA_BEGIN':
       // Mark the state as "loading" so we can show a spinner or something

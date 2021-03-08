@@ -86,6 +86,14 @@ textarea#the_area {
   height:100%;
 }
 
+.zen-mode .side-panel, .zen-mode .logic-editor-footer {
+  opacity: 0;
+}
+
+.side-panel, .logic-editor-footer {
+  transition: 1s opacity ease;
+}
+
 /* MARKER AND OTHERS */
 .input__marker p {
   margin: 5px 0;
