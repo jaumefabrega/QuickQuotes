@@ -80,7 +80,7 @@ export default function LogicEditor() {
       <div className={zenMode ? "zen-mode logic-editor" : "logic-editor"}>
       {/* <h1><Link to="/">Home</Link></h1> */}
         <div className="side-panel">
-          <ListByGroups elements={fields} groupIdentifier='type' />
+          <ListByGroups elements={fields} groupIdentifier='type' textareaText={localState.textareaText} />
         </div>
         <div className="main-editor center-wrapper" style={{}}>
           <div>

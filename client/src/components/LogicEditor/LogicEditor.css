@@ -42,6 +42,16 @@ textarea#the_area {
   margin-top: 50px;
 }
 
+.side-panel li span:not(.used-field) {
+  box-shadow: inset -240px 0 0 0 #ffffff, inset 0 -7px 0 0 rgb(70 186 248 / 50%);
+  transition: 0.6s box-shadow ease;
+}
+
+.side-panel li span.used-field {
+  box-shadow: inset 0 0 0 0 #ffffff, inset 0 -7px 0 0 rgb(70 186 248 / 50%);
+  transition: 0.3s box-shadow ease-out;
+}
+
 .side-panel p {
   color: #555;
   line-height: 1.6em;
