@@ -86,7 +86,7 @@ export default function Dashboard() {
                   <td><Link to="/fields">{formSettings.title}</Link></td>
                   <td className="secondary"><Link to="/fields"><div className="big-icon-button"><span style={{lineHeight:'24px'}}>{formFields.length}</span><span>Fields</span></div></Link></td>
                   <td className="secondary"><Link to="/logic"><div className="big-icon-button"><img src="assets/images/calculate-24px.svg" style={{marginRight:'5px'}} alt="tbd"/><span>Edit Logic</span></div></Link></td>
-                  <td className="secondary"><div className="big-icon-button" onClick={() => copyTextToClipboard("<script src='http://localhost:3001/form/"+userId+"'></script>")}><img src="assets/images/code-24px.svg" style={{marginRight:'5px'}} alt="tbd"/><span>Copy Code</span></div></td>
+                  <td className="secondary"><div className="big-icon-button ripple" onClick={() => copyTextToClipboard("<script src='http://localhost:3001/form/"+userId+"'></script>")}><img src="assets/images/code-24px.svg" style={{marginRight:'5px'}} alt="tbd"/><span>Copy Code</span></div></td>
                   <td className="secondary"><div className="big-icon-button"><img src="assets/images/content_copy-24px.svg" style={{marginRight:'5px'}} alt="tbd"/><span>Duplicate</span></div></td>
                 </tr>
               </tbody>

@@ -49,6 +49,23 @@ td.secondary .big-icon-button:hover img {
   opacity: 1;
 }
 
+td.secondary div.ripple:hover {
+  background: white radial-gradient(circle, transparent 1%, white 1%) center/10000%;
+  border-radius: 30px;
+}
+
+td.secondary div.ripple:active {
+  background-color: #6eb9f783;
+  background-size: 50px;
+  transition: background 0s;
+  border-radius: 30px;
+}
+
+td.secondary div.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+
 .panel-wrapper:not(:first-of-type) {
   margin-top:30px;
 }
