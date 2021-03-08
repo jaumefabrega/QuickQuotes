@@ -37,7 +37,7 @@ exports.getUserData = async (req, res) => {
 exports.getFinalForm = async (req, res) => {
   try {
     const { userId, formId } = req.params;
-    const user = await User.findById(userId);
+    const user = await User.findByIdAndUpdate(userId, {$inc : {'analytics.visits' : 1}}, {new: true}); // I am not sure that the visit increment should be done directly here...
     const { scriptText, fields, settings } = user.form;
     console.log('queried final form');
     const safeFields = fields.map(field => {
@@ -74,6 +74,25 @@ exports.updateForm = async (req, res) => {
     } else if (updateType === 'logic') {
       const newScriptText = parseLogic(payload);
       user = await User.findByIdAndUpdate(userId, {$set: {'form.logicText': payload, 'form.scriptText': newScriptText}}, {new: true});
+    }
+    res.status(201);
+    res.send(user);
+  } catch (error) {
+    console.log('error', error); // eslint-disable-line no-console
+    res.sendStatus(500);
+  }
+};
+
+
+// body format: {userId: String, analyticType: Enum {'calculation', 'lead'}, payload: Enum {{analytic object}, {lead object}}
+exports.postAnalytics = async (req, res) => {
+  try {
+    const { userId, analyticType, payload } = req.body;
+    let user;
+    if (analyticType === 'calculation') {
+      user = await User.findByIdAndUpdate(userId, {$inc : {'analytics.calculations' : 1}}, {new: true});
+    } else if (analyticType === 'lead') {
+      user = await User.findByIdAndUpdate(userId, {$push: {'analytics.leads': {...payload, timestamp: new Date()}}}, {new: true});
     }
     res.status(201);
     res.send(user);

@@ -67,6 +67,7 @@ export default function Dashboard() {
   const formFields = useSelector(state => state.form.fields);
   const formSettings = useSelector(state => state.form.settings);
   const userId = useSelector(state => state._id);
+  const analytics = useSelector(state => state.analytics);
 
   if (formFields.length) {
     contentElement = (
@@ -105,9 +106,9 @@ export default function Dashboard() {
               <tbody>
                 <tr>
                   <td>Last 30 days</td>
-                  <td className="secondary">30 visits</td>
-                  <td className="secondary">67 calculations</td>
-                  <td className="secondary">17 leads</td>
+                  <td className="secondary">{analytics.visits} visits</td>
+                  <td className="secondary">{analytics.calculations} calculations</td>
+                  <td className="secondary">{analytics.leads.length} leads</td>
                   <td className="secondary" style={{width:'36px'}}><img id="account" src="assets/images/download-24px.svg" style={{height:'70%'}} alt="tbd"/></td>
                 </tr>
               </tbody>

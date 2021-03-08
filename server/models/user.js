@@ -22,6 +22,11 @@ const userSchema = new Schema({
       fieldsColor: {type: String, default:'#ffffff'}
     }
   },
+  analytics: {
+    visits: {type:Number, default:0},
+    calculations: {type:Number, default:0},
+    leads: []
+  }
 });
 
 const User = model('User', userSchema);
