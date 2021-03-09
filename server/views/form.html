@@ -131,9 +131,9 @@
     <div class="field">
       <label for={{this.safeName}} data-qq-vartype="{{this.type}}">{{this.name}}</label>
       {{#if (isNotDropdownVariable this)}}
-        <input type="{{this.type}}" id={{this.safeName}} oninput="QQupdatePrice()" {{#if (isNotTextVariable this)}}class="QQ-variable-not-text"{{/if}} data-qq-vartype="{{this.type}}" data-qq-varname="{{this.safeName}}">
+        <input type="{{this.type}}" id={{this.safeName}} oninput="QQupdatePrice()" {{#if (isNotTextVariable this)}}class="QQ-variable-not-text"{{/if}} data-qq-vartype="{{this.type}}" data-qq-varname="{{this.safeName}}" data-qq-unsafe-varname="{{this.name}}">
       {{else}}
-        <select id={{this.safeName}} onchange="QQupdatePrice()" class="QQ-variable-not-text" data-qq-vartype="{{this.type}}" data-qq-varname="{{this.safeName}}">
+        <select id={{this.safeName}} onchange="QQupdatePrice()" class="QQ-variable-not-text" data-qq-vartype="{{this.type}}" data-qq-varname="{{this.safeName}}" data-qq-unsafe-varname="{{this.name}}">
           {{#each this.options}}
           <option value="{{this.value}}">{{this.name}}</option>
           {{/each}}

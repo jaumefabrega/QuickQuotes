@@ -1,5 +1,7 @@
 const html = `{{{htmlToWrite}}}`;
 const txt = '{{{scriptText}}}';
+const QQuserId = '{{userId}}';
+
 function QQupdatePrice() {
   const allQQnonTextVarElements = document.querySelectorAll('#QQ-form .QQ-variable-not-text');
   const src = [];
@@ -10,7 +12,29 @@ function QQupdatePrice() {
   FF();
 }
 
+function gatherAndSendLead() {
+  const allFields = document.querySelectorAll('#QQ-form [data-qq-varname]');
+  const payload = {};
+  allFields.forEach(field => payload[field.getAttribute('data-qq-unsafe-varname')] = field.type === 'checkbox' ? field.checked : field.value);
+  // const toSendBody = JSON.stringify({userId:'6047b3b26b80730be0d24108', analyticType:'lead',payload:{email:"qrqrqr"}});
+  let url = new URL('http://localhost:3001/analytics');
+  let params = {userId:QQuserId, analyticType:'lead',payload:JSON.stringify(payload)};
+  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+  fetch(url, {
+    method: 'GET',
+    mode: 'no-cors', // no-cors, *cors, same-origin
+    // headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    // },
+    // body: toSendBody
+  });
+  // console.log(toSendBody);
+
+}
+
 function QQrequestService() {
+  gatherAndSendLead();
   const formWrapper = document.getElementById("QQ-form-wrapper");
   formWrapper.innerHTML = '';
   formWrapper.innerHTML = '<div id="submit-message"><p style="text-align:center">Your request has been sent.<p style="text-align:center">We will get back to you by email.</p><p style="text-align:center">Thank you.</p></div>';

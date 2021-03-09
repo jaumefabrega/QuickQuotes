@@ -90,7 +90,7 @@ exports.getFinalForm = async (req, res) => {
 
     const JSSource = fs.readFileSync(__dirname + '/../views/form.js', 'utf8');
     const JSTemplate = Handlebars.compile(JSSource);
-    const JSResult = JSTemplate({htmlToWrite, scriptText}, {noEscape: true});
+    const JSResult = JSTemplate({htmlToWrite, scriptText, userId}, {noEscape: true});
 
     res.status(200);
     // res.setHeader('content-type', 'applicaton/json');
@@ -131,9 +131,16 @@ exports.updateForm = async (req, res) => {
 // body format: {userId: String, analyticType: Enum {'calculation', 'lead'}, payload: Enum {{analytic object}, {lead object}}
 exports.postAnalytics = async (req, res) => {
   try {
-    const { userId, analyticType, payload } = req.body;
+    console.log('cocoocococo');
+    // console.log(req);
+    console.log(req.body);
+    console.log(req.query);
+    let { userId, analyticType, payload } = req.query;
+    payload = JSON.parse(payload);
+    console.log(analyticType);
     let user;
     if (analyticType === 'lead') {
+      console.log('payload is', payload)
       user = await User.findByIdAndUpdate(userId, {$push: {'analytics.leads': {...payload, timestamp: new Date()}}}, {new: true});
     }
     res.status(201);
