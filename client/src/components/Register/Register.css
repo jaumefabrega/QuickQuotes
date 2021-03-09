@@ -1,0 +1,40 @@
+.register {
+  margin:auto;
+
+}
+
+.register input:not([type=submit]) {
+  display:block;
+  margin:20px;
+  line-height: 26px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px solid silver;
+  /* border-radius: 5px; */
+  font-size: 1rem;
+  padding: 9px;
+  margin-top: 5px;
+}
+
+.register input::placeholder {
+	color: #cfcfcf;
+}
+
+.register input[type=submit] {
+  margin:auto;
+  margin-top:35px;
+  display:block;
+}
+
+.register #logo {
+  height:45px;
+  margin:auto;
+  display:block;
+}
+
+
+.title {
+  text-align:center;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
