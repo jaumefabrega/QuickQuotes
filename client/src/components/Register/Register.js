@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import auth from '../../utils/auth';
 import api from '../../utils/apiClient'
 import { setIsAuthenticated } from '../../actions'
+import './Register.css'
 
 const initialState = {
   email: '',
   password: '',
-  firstName: '',
-  lastName: '',
 };
 
 const Register = () => {
   const [state, setState] = useState(initialState);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,8 +27,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     // Check the client-session to see how to handle redirects
     e.preventDefault();
-    const { email, password, firstName, lastName } = state;
-    const user = { email, password, firstName, lastName };
+    const { email, password } = state;
+    const user = { email, password };
     const res = await api.register(user);
 
     if (res.error) {
@@ -36,52 +37,39 @@ const Register = () => {
     } else {
       const { accessToken } = res;
       localStorage.setItem('accessToken', accessToken);
-      setIsAuthenticated(true);
+      dispatch(setIsAuthenticated(true));
       auth.login(() => history.push('/'));
     }
   };
 
   const validateForm = () => {
     return (
-      !state.email || !state.password || !state.firstName || !state.lastName
+      !state.email || !state.password
     );
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form className="form" onSubmit={handleSubmit}>
+    <div className="register">
+      <img id="logo" src="/assets/images/logo.png" alt="logo" />
+      <h3 className="title">Sign up</h3>
+      <form className="form register-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="name@mail.com"
+          placeholder="email"
           name="email"
           value={state.email}
           onChange={handleChange}
+          autoComplete="off"
         />
         <input
           type="password"
-          placeholder="supersecretthingy"
+          placeholder="password"
           name="password"
           value={state.password}
           onChange={handleChange}
+          autoComplete="off"
         />
-        <input
-          type="text"
-          placeholder="Name"
-          name="firstName"
-          value={state.firstName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="Nameson"
-          name="lastName"
-          value={state.lastName}
-          onChange={handleChange}
-        />
-        <button className="form-submit" type="submit" disabled={validateForm()}>
-          &nbsp;Register&nbsp;
-        </button>
+        <input type="submit" value="Sign up" className="form-submit button primary" disabled={validateForm()} />
       </form>
     </div>
   );

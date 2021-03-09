@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import auth from '../../utils/auth';
 import api from '../../utils/apiClient';
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { setIsAuthenticated } from '../../actions'
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
 const Login = () => {
   const [state, setState] = useState(initialState);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +37,7 @@ const Login = () => {
       const { accessToken } = res;
       localStorage.setItem('accessToken', accessToken);
       console.log('access token is ', accessToken);
-      setIsAuthenticated(true);
+      dispatch(setIsAuthenticated(true));
       auth.login(() => history.push('/'));
     }
   };

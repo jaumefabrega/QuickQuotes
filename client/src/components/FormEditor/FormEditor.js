@@ -13,7 +13,7 @@ export default function FormEditor() {
     <div className="form-editor">
       <h3>General</h3>
         <div className="field">
-          <input type="text" placeholder="Title" name="title" value={formSettings.title} onChange={(event) => dispatch(handleFormSettingsChange(event))} />
+          <input type="text" placeholder="Title" name="title" value={formSettings.title} onChange={(event) => dispatch(handleFormSettingsChange(event))} autoComplete="off"/>
         </div>
       <h3>Fields</h3>
       <div className="event-list" id="list">

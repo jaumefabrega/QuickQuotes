@@ -3,11 +3,12 @@ import auth from '../../utils/auth';
 import api from '../../utils/apiClient';
 import { useHistory } from "react-router-dom";
 import { setIsAuthenticated } from '../../actions'
-
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Logout = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     removeToken();
@@ -19,7 +20,7 @@ const Logout = () => {
   };
 
   const handleAuth = () => {
-    setIsAuthenticated(false);
+    dispatch(setIsAuthenticated(false));
     auth.logout(() => history.push('/'));
   };
 
