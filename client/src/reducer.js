@@ -1,10 +1,17 @@
 import { v4 as uuidv4 } from 'uuid';
+import auth from './utils/auth';
 
-const EMPTY_USER_DATA = {loading:true, email: '', password:'', form: {fields:[], settings:{title:'', backgroundColor:'#f3f7f9', fieldsColor:'#ffffff'}, logicText:'', scriptText:''}}; // should actually NOT send password from server either
+const EMPTY_USER_DATA = {isAuthenticated: auth.isAuthenticated(), loading:true, email: '', password:'', form: {fields:[], settings:{title:'', backgroundColor:'#f3f7f9', fieldsColor:'#ffffff'}, logicText:'', scriptText:''}}; // should actually NOT send password from server either
 
 export default function reducer (state = EMPTY_USER_DATA, action) {
 
   switch (action.type) {
+    case 'SET_IS_AUTHENTICATED':
+      return {
+        ...state,
+        isAuthenticated: action.payload.isAuthenticated
+      }
+
     case 'HANDLE_FIELD_CHANGE':
       return {
         ...state,
@@ -84,7 +91,6 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
     case 'FETCH_USER_DATA_SUCCESS':
       // All done: set loading "false".
       // Also, replace the items with the ones from the server
-      // console.log('reducer says:', action.payload);
       return {
         ...state,
         loading: false,
@@ -119,8 +125,6 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
       case 'SAVE_FORM_DATA_SUCCESS':
         // All done: set loading "false".
         // Also, replace the items with the ones from the server
-        // console.log('reducer says:', action.payload);
-        console.log('success of reducer. Returned userData is', action.payload)
         return {
           ...state,
           loading: false,

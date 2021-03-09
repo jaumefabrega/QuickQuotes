@@ -1,5 +1,14 @@
 import api from './utils/apiClient';
 
+export function setIsAuthenticated(isAuthenticated) {
+  return {
+    type: 'SET_IS_AUTHENTICATED',
+    payload: {
+      isAuthenticated
+    }
+  }
+}
+
 export function handleFieldChange({target}, fieldId) {
   return {
     type: 'HANDLE_FIELD_CHANGE',
@@ -73,17 +82,15 @@ export function toggleZenMode() {
 /* async START */
 
 // FETCH USER DATA
-export function fetchUserData(userId) {
-  console.log('fetch data of user', userId);
+export function fetchUserData() {
   return dispatch => {
     dispatch(fetchUserDataBegin());
-    return api.getUserData(userId)
+    return api.getUserData()
       .then(res => {
-        console.log('got it');
         dispatch(fetchUserDataSuccess(res));
         return res;
       })
-      .catch(error => {console.log('errore', error);dispatch(fetchUserDataFailure(error))});
+      .catch(error => {console.log('error', error);dispatch(fetchUserDataFailure(error))});
   };
 }
 
@@ -103,17 +110,15 @@ export const fetchUserDataFailure = error => ({
 
 
 // SAVE FORM DATA
-export function saveFormData({userId, updateType, payload}) {
-  console.log('fetch data of user', userId);
+export function saveFormData({updateType, payload}) {
   return dispatch => {
     dispatch(saveFormDataBegin());
-    return api.saveForm({userId, updateType, payload})
+    return api.saveForm({updateType, payload})
       .then(res => {
-        console.log('got it');
         dispatch(saveFormDataSuccess(res));
         return res;
       })
-      .catch(error => {console.log('errore', error);dispatch(saveFormDataFailure(error))});
+      .catch(error => {console.log('error', error);dispatch(saveFormDataFailure(error))});
   };
 }
 

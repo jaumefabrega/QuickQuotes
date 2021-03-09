@@ -12,7 +12,7 @@ export default function FormPreviewer() {
   const formSettings = useSelector((state) => state.form.settings)
 
   const handleButtonClick = () => {
-    dispatch(saveFormData({userId: '604358dd2b586d1e800fb8fd', updateType: 'fields', payload:{fields, settings:formSettings}}));
+    dispatch(saveFormData({updateType: 'fields', payload:{fields, settings:formSettings}}));
   }
 
   return (
