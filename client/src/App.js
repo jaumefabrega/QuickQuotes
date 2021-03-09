@@ -21,15 +21,16 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const loading = useSelector(state => state.loading);
+  const isAuthenticated = useSelector(state => state.isAuthenticated);
 
   useEffect(() => {if (location.pathname !== '/logic') removeSuggestionBox()}, [location]);
-  useEffect(() => dispatch(fetchUserData()), []); // Initial fetching of user data, only when App mounts
+  useEffect(() => dispatch(fetchUserData()), [isAuthenticated]); // Initial fetching of user data, only when App mounts
 
   return (
       <div className="App">
          {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
-          <Header />
+          {location.pathname !== '/register' ? <Header /> : <></>}
           {loading
             ? (<div className="loader-wrapper"><div className="lds-ripple"><div></div><div></div></div></div>)
             : (<Switch>

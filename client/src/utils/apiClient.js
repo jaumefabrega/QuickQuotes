@@ -9,7 +9,6 @@ function getUserData () {
   // })
   //   // .then((res) => res.json())
 
-
   return fetch(`${BASE_URL}/user`, {
     method: 'GET',
     credentials: 'include',
@@ -19,11 +18,8 @@ function getUserData () {
     },
   })
     .then((res) => res.json())
+    .then(sleeper(2000))
     .catch((err) => console.log(err));
-
-
-
-  //.then(sleeper(2000));
 }
 
 function saveForm ({updateType, payload}) { // type must be 'fields' or 'logic', because server handles them differently (to avoid re-parsing logic text every time. Maybe I should change this)
