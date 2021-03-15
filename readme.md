@@ -1,26 +1,38 @@
 <p align="center">
-  <img src="readme-images/logo-readme.PNG" />
+  <img src="readme-images/logo-readme.PNG" style="max-width:300px"/>
 </p>
 
 
 
 Quick Quotes is a no-code tool that allows small business owners to offer dynamic quotes to their clients, directly from their website.
 
+
+
+
 ## Demo Video
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/DWw--8y8FwA/0.jpg)](http://www.youtube.com/watch?v=DWw--8y8FwA "QuickQuotes Demo Video")
+<p align="center">
+  [![IMAGE ALT TEXT](http://img.youtube.com/vi/DWw--8y8FwA/0.jpg)](http://www.youtube.com/watch?v=DWw--8y8FwA "QuickQuotes Demo Video")
+</p>
+
+
 
 ## Screenshots
 
 <p align="center">
-  <img src="readme-images/readme-screenshot-0.PNG" />
+  <img src="readme-images/readme-screenshot-0.PNG" style="border:1px solid silver"/>
 </p>
+
+
 <p align="center">
-  <img src="readme-images/readme-screenshot-1.PNG" />
+  <img src="readme-images/readme-screenshot-1.PNG" style="border:1px solid silver"/>
 </p>
+
+
 <p align="center">
-  <img src="readme-images/readme-screenshot-2.PNG" />
+  <img src="readme-images/readme-screenshot-2.PNG" style="border:1px solid silver"/>
 </p>
+
 
 
 ## Built with
@@ -32,6 +44,7 @@ Quick Quotes is a no-code tool that allows small business owners to offer dynami
 * [MongoDB](https://www.mongodb.com/3) - A complete data framework
 * [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for node.js
 * Love, lots of love ♥
+
 
 
 ## Author
