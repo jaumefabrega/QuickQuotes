@@ -37,7 +37,7 @@ Quick Quotes is a no-code tool that allows small business owners to offer dynami
 ## Built with
 
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces
-* [Redux](https://redux.js.org) - Storage to share data inside the app
+* [Redux](https://redux.js.org) - A predictable state container for JS Apps
 * [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 * [Handlebars](https://handlebarsjs.com/) - Minimal templating on steroids
 * [MongoDB](https://www.mongodb.com/3) - A complete data framework
