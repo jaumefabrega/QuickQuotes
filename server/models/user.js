@@ -17,8 +17,8 @@ const userSchema = new Schema({
     logicText: {type: String, default:''},
     scriptText: {type: String, default:''},
     settings: {
-      title: {type: String, default:''},
-      backgroundColor: {type: String, default:'#f3f7f9'},
+      title: {type: String, default:'Get your quote'},
+      backgroundColor: {type: String, default:'#fafad2'}, // default:'#f3f7f9'
       fieldsColor: {type: String, default:'#ffffff'}
     }
   },

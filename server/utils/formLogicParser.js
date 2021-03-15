@@ -118,11 +118,7 @@ function parseLogic (text) {
   }
   finalScript.push('return Math.round(QQ_final_quote*100)/100;');
 
-  return finalScript.join(''); // FIX: should actually join by '', using line-break for testing only
-
-  // return `function QQcalculateQuote() {
-  //   ${finalScript.join('\n')}
-  // }`; // FIX: should actually join by '', using line-break for testing only
+  return finalScript.join('');
 }
 
 module.exports = {

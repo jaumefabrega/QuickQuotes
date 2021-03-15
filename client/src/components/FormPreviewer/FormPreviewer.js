@@ -21,7 +21,7 @@ export default function FormPreviewer() {
       <div className="form-preview-actual-form" style={{backgroundColor:formSettings.backgroundColor}}>
         <h2>{formSettings.title}</h2>
         <div className="fields-preview-wrapper">
-          { fields.length ? fields.map(field => <FieldPreview field={field} key={field.id} settings={formSettings} />) : <p className="empty-warning">– As you add fields, you'll see a preview –</p> }
+          { fields.length ? fields.map(field => <FieldPreview field={field} key={field.id} settings={formSettings} />) : <p className="empty-warning">– Add fields from left panel –</p> }
         </div>
         <div style={{display:'flex',justifyContent: 'space-between',alignItems: 'center',padding:'10px 0'}}>
           <p id="QQ-price"><span id="QQ-price-dollar-sign">$</span><span id="QQ-price-whole-digits">99</span><span id="QQ-price-decimal-digits">.99</span></p>

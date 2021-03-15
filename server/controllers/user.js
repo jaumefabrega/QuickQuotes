@@ -54,16 +54,7 @@ exports.logout = (req, res) => {
 
 exports.getUserData = async (req, res) => {
   try {
-    /*
-    // OLD WAY BEFORE IMPLEMENTING AUTH
-    const { userId } = req.params;
-    const user = await User.findById(userId);
-    */
-
-    // NEW WAY WITH AUTH
     const user = req.user;
-    //
-
     res.status(200);
     res.send(user);
   } catch (error) {
@@ -93,7 +84,6 @@ exports.getFinalForm = async (req, res) => {
     const JSResult = JSTemplate({htmlToWrite, scriptText, userId}, {noEscape: true});
 
     res.status(200);
-    // res.setHeader('content-type', 'applicaton/json');
     res.send(JSResult);
   } catch (error) {
     res.sendStatus(500);
@@ -109,15 +99,11 @@ exports.updateForm = async (req, res) => {
       user.form.fields = payload.fields;
       user.form.settings = payload.settings;
       await user.save();
-      // OLD WAY WITH NO AUTH
-      // user = await User.findByIdAndUpdate(userId, {$set: {'form.fields': payload.fields, 'form.settings': payload.settings}}, {new: true});
     } else if (updateType === 'logic') {
       const newScriptText = parseLogic(payload);
       user.form.logicText = payload;
       user.form.scriptText = newScriptText;
       await user.save();
-      // OLD WAY WITH NO AUTH
-      // user = await User.findByIdAndUpdate(userId, {$set: {'form.logicText': payload, 'form.scriptText': newScriptText}}, {new: true});
     }
     res.status(201);
     res.send(user);
@@ -131,16 +117,10 @@ exports.updateForm = async (req, res) => {
 // body format: {userId: String, analyticType: Enum {'calculation', 'lead'}, payload: Enum {{analytic object}, {lead object}}
 exports.postAnalytics = async (req, res) => {
   try {
-    console.log('cocoocococo');
-    // console.log(req);
-    console.log(req.body);
-    console.log(req.query);
     let { userId, analyticType, payload } = req.query;
     payload = JSON.parse(payload);
-    console.log(analyticType);
     let user;
     if (analyticType === 'lead') {
-      console.log('payload is', payload)
       user = await User.findByIdAndUpdate(userId, {$push: {'analytics.leads': {...payload, timestamp: new Date()}}}, {new: true});
     }
     res.status(201);
