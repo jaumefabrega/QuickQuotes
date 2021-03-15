@@ -11,26 +11,25 @@ Quick Quotes is a no-code tool that allows small business owners to offer dynami
 
 ## Demo Video
 
-<p align="center">
-  [![IMAGE ALT TEXT](http://img.youtube.com/vi/DWw--8y8FwA/0.jpg)](http://www.youtube.com/watch?v=DWw--8y8FwA "QuickQuotes Demo Video")
-</p>
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/DWw--8y8FwA/0.jpg)](http://www.youtube.com/watch?v=DWw--8y8FwA "QuickQuotes Demo Video")
+
 
 
 
 ## Screenshots
 
 <p align="center">
-  <img src="readme-images/readme-screenshot-0.PNG" style="border:1px solid silver"/>
+  <img src="readme-images/readme-screenshot-0.PNG" />
 </p>
 
 
 <p align="center">
-  <img src="readme-images/readme-screenshot-1.PNG" style="border:1px solid silver"/>
+  <img src="readme-images/readme-screenshot-1.PNG" />
 </p>
 
 
 <p align="center">
-  <img src="readme-images/readme-screenshot-2.PNG" style="border:1px solid silver"/>
+  <img src="readme-images/readme-screenshot-2.PNG" />
 </p>
 
 
