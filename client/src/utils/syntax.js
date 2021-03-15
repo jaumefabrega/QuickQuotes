@@ -243,11 +243,6 @@ class Syntax {
   handleKeyEvent(event, currentText) {
     const key = event.keyCode || event.charCode;
 
-    // if (event.type === 'keydown' && !(key === 8 || key === 46)) { // Backspace key (note that delete/supr key is 46)
-    //   console.log('keydown not allowed');
-    //   return {wasAllowed: false, suggestions: null};
-    // }
-
     if (event.target.selectionStart !== event.target.value.length || event.target.selectionStart !== event.target.selectionEnd) { // Caret is not positioned at the end
       console.log('CARET must be positioned at the end');
       return {wasAllowed: false, suggestions: null};
@@ -255,8 +250,7 @@ class Syntax {
 
     if (key === 13 && !([".", "\n", "\r\n", "\r"].includes(currentText.slice(-1)))) { // TODO FIX not working for consecutive linebreaks. Anyway should probably be done in validate
       // if (key === 13 && !(textarea.value.match(/(\r?\n|\r)$|\.$/))) { // TODO FIX not working for consecutive linebreaks. Anyway should probably be done in validate
-        console.log('stop it motherfucker');
-        // event.preventDefault();
+        console.log('This action is not allowed');
         return {wasAllowed: false, suggestions: null};
     }
 
@@ -266,6 +260,5 @@ class Syntax {
     return {wasAllowed: isValid, suggestions: suggestions, wholeTextIsValid};
   }
 }
-
 
 export default Syntax;

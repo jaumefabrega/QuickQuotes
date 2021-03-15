@@ -17,9 +17,6 @@ select:focus, input:focus {
   outline: none;
 }
 
-.button {
-}
-
 .wrapper.submit {
   display: flex;
   justify-content: flex-end;

@@ -12,7 +12,7 @@ const INITIAL_LOCAL_STATE = {
   textareaText: '',
   autocompleteSuggestions: [],
   suggestionBoxPosition: [0, 0],
-  wholeTextIsValid: false, //
+  wholeTextIsValid: false,
   typedForbiddenChar: false,
   forbiddenCharTimeoutId: false,
   Syntax: null,
@@ -78,7 +78,6 @@ export default function LogicEditor() {
 
   return (
       <div className={zenMode ? "zen-mode logic-editor" : "logic-editor"}>
-      {/* <h1><Link to="/">Home</Link></h1> */}
         <div className="side-panel">
           <ListByGroups elements={fields} groupIdentifier='type' textareaText={localState.textareaText} />
         </div>

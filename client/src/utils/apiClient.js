@@ -1,14 +1,6 @@
 const BASE_URL = 'http://localhost:3001';
 
 function getUserData () {
-  // return fetchRequest('/user', {
-  //   method: 'GET',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {'Content-Type': 'application/json'},
-  // })
-  //   // .then((res) => res.json())
-
   return fetch(`${BASE_URL}/user`, {
     method: 'GET',
     credentials: 'include',
@@ -23,15 +15,6 @@ function getUserData () {
 }
 
 function saveForm ({updateType, payload}) { // type must be 'fields' or 'logic', because server handles them differently (to avoid re-parsing logic text every time. Maybe I should change this)
-  // return fetchRequest('/form', {
-  //   method: 'POST',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {'Content-Type': 'application/json'},
-  //   body: JSON.stringify({userId, updateType, payload})
-  // })
-  //   .then((res) => res.json());
-
   return fetch(`${BASE_URL}/form`, {
     method: 'POST',
     credentials: 'include',
@@ -46,7 +29,7 @@ function saveForm ({updateType, payload}) { // type must be 'fields' or 'logic',
 
 }
 
-function fetchRequest (path, options) {
+function fetchRequest (path, options) { // not in use anymore
   return fetch(BASE_URL + path, options)
   .then(res => res.status <= 400 ? res : Promise.reject())
   // .then(res => res.status === 204 ? res : res.json())

@@ -38,7 +38,6 @@ function Header() {
       break;
 
   }
-  // useEffect(() => {if (location.pathname !== '/logic') removeSuggestionBox()}, [location]);
   return (
     <div className="header" style={{ left:location.pathname === '/fields' ? '420px' : '25%' }}>
       <Link to="/">

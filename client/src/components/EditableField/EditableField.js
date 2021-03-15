@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux'
 import './EditableField.css'
 import { handleFieldChange, handleFieldDelete, handleOptionInputChange, handleOptionAdd, handleOptionDelete } from '../../actions'
 
-// , onInputChange, onFieldDelete, onOptionAdd, onOptionDelete, onOptionInputChange
 export default function EditableField({field}) {
   const dispatch = useDispatch();
 
