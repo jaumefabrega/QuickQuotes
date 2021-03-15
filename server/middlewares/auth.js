@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const SECRET_KEY = process.env.SECRET_KEY || 'dumbKey';
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'dumbKey';
 
 const authMiddleware = async (req, res, next) => {
   // extract token from auth headers
@@ -10,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     // verify & decode token payload,
-    const { _id } = jwt.verify(token, SECRET_KEY);
+    const { _id } = jwt.verify(token, JWT_SECRET_KEY);
     // attempt to find user object and set to req
     const user = await User.findOne({ _id }); // FIX: change to findById(_id)
     if (!user) return res.sendStatus(401);

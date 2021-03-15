@@ -43,9 +43,7 @@ function identifySentenceType (sentence) {
   } else if (sentenceUC.startsWith('IF')) {
     return 'IF';
   }
-
-
-  return 'TEST_TEST';
+  throw new Error(`Parsing Error: cannot identify sentence type of sentence ${sentence}`);
 }
 
 function parseVariable (text) {

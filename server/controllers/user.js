@@ -6,7 +6,7 @@ const Handlebars = require('handlebars');
 const fs = require('fs');
 const User = require('../models/user');
 const { parseLogic } = require('../utils/formLogicParser');
-const SECRET_KEY = process.env.SECRET_KEY || 'dumbKey';
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'dumbKey';
 
 function fakeParseLogic (text) { // For testing only
   return `This is the parsed script:\n\n${text}`;
@@ -23,7 +23,7 @@ exports.createUser = async (req, res) => {
     if (password === '') throw new Error();
     const hash = await bcrypt.hash(password, 10);
     const { _id } = await User.create({email, password: hash});
-    const accessToken = jwt.sign({ _id}, SECRET_KEY);
+    const accessToken = jwt.sign({ _id}, JWT_SECRET_KEY);
     res.status(201).send({ accessToken});
   } catch (error) {
     console.log('error', error); // eslint-disable-line no-console
@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email: email });
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
-    const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY);
+    const accessToken = jwt.sign({ _id: user._id }, JWT_SECRET_KEY);
     res.status(200).send({ accessToken });
   } catch (error) {
     res

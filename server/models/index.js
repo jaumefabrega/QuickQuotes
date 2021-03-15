@@ -1,8 +1,10 @@
 'use strict';
 const mongoose = require('mongoose');
 
-const dbName = 'quick_quotes';
+const dbName = process.env.DB_NAME || 'quick_quotes';
+const dbHost = process.env.DB_HOST || 'localhost';
+const dbPort = process.env.DB_PORT || '27017';
 
-mongoose.connect(`mongodb://localhost:27017/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true }); // TODO: dig deeper into useFindAndModify: false
+mongoose.connect(`mongodb://${dbHost}:${dbPort}/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true }); // TODO: dig deeper into useFindAndModify: false
 
 module.exports = mongoose;
