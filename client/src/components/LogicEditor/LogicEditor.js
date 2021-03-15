@@ -22,9 +22,10 @@ const INITIAL_LOCAL_STATE = {
 export default function LogicEditor() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const userId = useSelector(state => state._id);
 
   const saveLogic = () => {
-    dispatch(saveFormData({userId: '604358dd2b586d1e800fb8fd', updateType: 'logic', payload:localState.textareaText}));
+    dispatch(saveFormData({userId: userId, updateType: 'logic', payload:localState.textareaText}));
     history.push('/');
   }
 
