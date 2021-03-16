@@ -1,6 +1,7 @@
 .tertiary.button {
   cursor:pointer;
   text-decoration:underline;
+  display:inline-block;
 }
 
 .tertiary.button:hover {
