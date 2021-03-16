@@ -1,8 +1,8 @@
-.register {
+.login {
   margin:auto;
 }
 
-.register input:not([type=submit]) {
+.login input:not([type=submit]) {
   display:block;
   margin:20px;
   line-height: 26px;
@@ -15,17 +15,17 @@
   margin-top: 5px;
 }
 
-.register input::placeholder {
+.login input::placeholder {
 	color: #cfcfcf;
 }
 
-.register input[type=submit] {
+.login input[type=submit] {
   margin:auto;
   margin-top:35px;
   display:block;
 }
 
-.register #logo {
+.login #logo {
   height:45px;
   margin:auto;
   display:block;

@@ -4,6 +4,7 @@ import api from '../../utils/apiClient';
 import { useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setIsAuthenticated } from '../../actions'
+import './Login.css'
 
 const initialState = {
   email: '',
@@ -47,26 +48,27 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login">
+      <img id="logo" src="/assets/images/logo.png" alt="logo" />
+      <h3 className="title">Login</h3>
       <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="name@mail.com"
+          placeholder="email"
           name="email"
           value={state.email}
           onChange={handleChange}
+          autoComplete="off"
         />
         <input
           type="password"
-          placeholder="supersecretthingy"
+          placeholder="password"
           name="password"
           value={state.password}
           onChange={handleChange}
+          autoComplete="off"
         />
-        <button className="form-submit" type="submit" disabled={validateForm()}>
-          &nbsp;Login&nbsp;
-        </button>
+        <input type="submit" value="Login" className="form-submit button primary" disabled={validateForm()} />
       </form>
     </div>
   );
