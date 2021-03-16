@@ -9,9 +9,12 @@ function getUserData () {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`
     },
   })
+    .then(sleeper(1000)) // to test loading icon
     .then((res) => res.json())
-    .then(sleeper(2000))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      throw new Error('apiClient error when fetching user data');
+    });
 }
 
 function saveForm ({updateType, payload}) { // type must be 'fields' or 'logic', because server handles them differently (to avoid re-parsing logic text every time. Maybe I should change this)

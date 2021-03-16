@@ -87,10 +87,15 @@ export function fetchUserData() {
     dispatch(fetchUserDataBegin());
     return api.getUserData()
       .then(res => {
+        dispatch(setIsAuthenticated(true));
         dispatch(fetchUserDataSuccess(res));
         return res;
       })
-      .catch(error => {console.log('error', error);dispatch(fetchUserDataFailure(error))});
+      .catch(error => {
+        console.log('error', error);
+        dispatch(setIsAuthenticated(false));
+        dispatch(fetchUserDataFailure(error))
+      });
   };
 }
 

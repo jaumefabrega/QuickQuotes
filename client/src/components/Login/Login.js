@@ -37,7 +37,6 @@ const Login = () => {
     } else {
       const { accessToken } = res;
       localStorage.setItem('accessToken', accessToken);
-      console.log('access token is ', accessToken);
       dispatch(setIsAuthenticated(true));
       auth.login(() => history.push('/'));
     }

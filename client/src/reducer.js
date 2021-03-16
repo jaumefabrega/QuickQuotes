@@ -89,12 +89,13 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
       };
 
     case 'FETCH_USER_DATA_SUCCESS':
+      console.log('fetch user data succeded');
       // All done: set loading "false".
       // Also, replace the items with the ones from the server
       return {
         ...state,
-        loading: false,
-        ...action.payload
+        ...action.payload,
+        loading: false
       };
 
     case 'FETCH_USER_DATA_FAILURE':
@@ -105,11 +106,12 @@ export default function reducer (state = EMPTY_USER_DATA, action) {
       // This is all up to you and your app though:
       // maybe you want to keep the items around!
       // Do whatever seems right for your use case.
+      console.log('fetch user data FAILED');
       return {
         ...state,
-        loading: false,
         error: action.payload.error,
-        ...EMPTY_USER_DATA
+        ...EMPTY_USER_DATA,
+        loading: false
       };
 
       //------------------------------- THUNK ACTIONS for save form
