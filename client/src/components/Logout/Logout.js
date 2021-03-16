@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { setIsAuthenticated } from '../../actions'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './Logout.css'
 
 const Logout = () => {
   const history = useHistory();
@@ -26,13 +27,7 @@ const Logout = () => {
 
   return (
     <div>
-      <h2>Are you sure you want to log out?</h2>
-      <Link to="/">
-        <button className="confirm-btn">No</button>
-      </Link>
-      <button className="confirm-btn" onClick={() => handleClick()}>
-        Yes
-      </button>
+      <p onClick={() => handleClick()} className="tertiary button">Logout</p>
     </div>
   );
 };

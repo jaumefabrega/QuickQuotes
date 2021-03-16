@@ -1,0 +1,8 @@
+.tertiary.button {
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.tertiary.button:hover {
+  color:#6f8bfb;
+}

@@ -49,9 +49,6 @@ function App() {
                 <Route path="/login">
                   <Login />
                 </Route>
-                <Route path="/logout">
-                  <Logout />
-                </Route>
                 <Route path="/">
                   <Dashboard />
                 </Route>
