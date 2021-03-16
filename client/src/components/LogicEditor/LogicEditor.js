@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import Syntax from '../../utils/syntax';
@@ -61,6 +61,7 @@ export default function LogicEditor() {
     }
   };
 
+  const isAuthenticated = useSelector(state => state.isAuthenticated);
   const fields = useSelector((state) => state.form.fields);
   const savedLogicText = useSelector(state => state.form.logicText);
   let [localState, setLocalState] = useState({...INITIAL_LOCAL_STATE, textareaText:savedLogicText});
@@ -77,33 +78,38 @@ export default function LogicEditor() {
   // RECALCULATE SUGGESTION BOX POSTIION
   useEffect(() => {});
 
-  return (
-      <div className={zenMode ? "zen-mode logic-editor" : "logic-editor"}>
-        <div className="side-panel">
-          <ListByGroups elements={fields} groupIdentifier='type' textareaText={localState.textareaText} />
-        </div>
-        <div className="main-editor center-wrapper" style={{}}>
-          <div>
-            <div id="error_message" className={localState.typedForbiddenChar ? 'shown' : ''}></div>
-            {/* <!-- 'POSITION: RELATIVE' FOR THE TEXTAREA IS OF VITAL IMPORTANCE--> */}
-            <textarea id="the_area" onKeyPress={handleKeyEvent} onKeyDown={handleKeyEvent} value={localState.textareaText} onChange={handleTextareaChange} onClick={(event) => showPositionMarker(event)} onMouseUp={(event) => getSelectionArea(event)} className="get-position-textarea get-selection-textarea" placeholder="Start typing..."></textarea>
-            <form onSubmit={saveLogic} className={localState.wholeTextIsValid ? "logic-editor-button-form" : "logic-editor-button-form disabled"}>
-              {localState.wholeTextIsValid ? <input type="submit" value="SAVE" className="button primary" /> : <input type="button" value="SAVE" disabled className="button primary" />}
-            </form>
+
+  if (!isAuthenticated) {
+    return (<Redirect to='/login'  />)
+  } else {
+    return (
+        <div className={zenMode ? "zen-mode logic-editor" : "logic-editor"}>
+          <div className="side-panel">
+            <ListByGroups elements={fields} groupIdentifier='type' textareaText={localState.textareaText} />
+          </div>
+          <div className="main-editor center-wrapper" style={{}}>
+            <div>
+              <div id="error_message" className={localState.typedForbiddenChar ? 'shown' : ''}></div>
+              {/* <!-- 'POSITION: RELATIVE' FOR THE TEXTAREA IS OF VITAL IMPORTANCE--> */}
+              <textarea id="the_area" onKeyPress={handleKeyEvent} onKeyDown={handleKeyEvent} value={localState.textareaText} onChange={handleTextareaChange} onClick={(event) => showPositionMarker(event)} onMouseUp={(event) => getSelectionArea(event)} className="get-position-textarea get-selection-textarea" placeholder="Start typing..."></textarea>
+              <form onSubmit={saveLogic} className={localState.wholeTextIsValid ? "logic-editor-button-form" : "logic-editor-button-form disabled"}>
+                {localState.wholeTextIsValid ? <input type="submit" value="SAVE" className="button primary" /> : <input type="button" value="SAVE" disabled className="button primary" />}
+              </form>
+            </div>
+          </div>
+          <div className="side-panel right">
+            <h3>EXAMPLE</h3>
+              <p><span style={{textDecoration:'underline'}}>Take</span> the number of trees. Multiply it by the property cost of type of tree job. Add 25. This is Part 1.</p>
+              <p>Take the grass square meters. Multiply it by 10'3. Add 20%. If urgent is checked, add 100 to it. This is Part 2.</p>
+              <p>Take Part 1. Add Part 2. Round it to the nearest 1. <span style={{textDecoration:'underline'}}>This is the Final Quote</span>.</p>
+            <h3>ALL SUGGESTIONS</h3>
+            <div className="all-suggestions">
+              {localState.autocompleteSuggestions.map((suggestion, idx) => <p key={idx}>{suggestion}</p>)}
+            </div>
+          </div>
+          <div className="logic-editor-footer">
           </div>
         </div>
-        <div className="side-panel right">
-          <h3>EXAMPLE</h3>
-            <p><span style={{textDecoration:'underline'}}>Take</span> the number of trees. Multiply it by the property cost of type of tree job. Add 25. This is Part 1.</p>
-            <p>Take the grass square meters. Multiply it by 10'3. Add 20%. If urgent is checked, add 100 to it. This is Part 2.</p>
-            <p>Take Part 1. Add Part 2. Round it to the nearest 1. <span style={{textDecoration:'underline'}}>This is the Final Quote</span>.</p>
-          <h3>ALL SUGGESTIONS</h3>
-          <div className="all-suggestions">
-            {localState.autocompleteSuggestions.map((suggestion, idx) => <p key={idx}>{suggestion}</p>)}
-          </div>
-        </div>
-        <div className="logic-editor-footer">
-        </div>
-      </div>
-  )
+    )
+  }
 }

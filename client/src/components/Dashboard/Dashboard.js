@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux'
 
 import './Dashboard.css'
@@ -74,6 +74,7 @@ export default function Dashboard() {
   }
 
   let contentElement;
+  const isAuthenticated = useSelector(state => state.isAuthenticated);
   const formFields = useSelector(state => state.form.fields);
   const formSettings = useSelector(state => state.form.settings);
   const userId = useSelector(state => state._id);
@@ -139,9 +140,13 @@ export default function Dashboard() {
     )
   }
 
-  return (
-    <div className="dashboard center-wrapper">
-      {contentElement}
-    </div>
-  )
+  if (!isAuthenticated) {
+    return (<Redirect to='/login'  />)
+  } else {
+    return (
+      <div className="dashboard center-wrapper">
+        {contentElement}
+      </div>
+    )
+  }
 }
