@@ -30,7 +30,7 @@ function App() {
       <div className="App">
          {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
-          {location.pathname !== '/register' ? <Header /> : <></>}
+          <Header />
           {loading
             ? (<div className="loader-wrapper"><div className="lds-ripple"><div></div><div></div></div></div>)
             : (<Switch>
