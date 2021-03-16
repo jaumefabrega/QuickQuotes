@@ -4,7 +4,6 @@ import api from '../../utils/apiClient';
 import { useHistory } from "react-router-dom";
 import { setIsAuthenticated } from '../../actions'
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import './Logout.css'
 
 const Logout = () => {

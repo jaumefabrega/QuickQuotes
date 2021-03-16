@@ -11,7 +11,6 @@ import Account from './components/Account/Account'
 import Dashboard from './components/Dashboard/Dashboard'
 import Header from './components/Header/Header'
 import Login from './components/Login/Login'
-import Logout from './components/Logout/Logout'
 import Register from './components/Register/Register'
 import { removeSuggestionBox } from './utils/autcompleteBox';
 import { fetchUserData } from './actions'

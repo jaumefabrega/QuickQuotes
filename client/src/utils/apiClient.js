@@ -32,13 +32,6 @@ function saveForm ({updateType, payload}) { // type must be 'fields' or 'logic',
 
 }
 
-function fetchRequest (path, options) { // not in use anymore
-  return fetch(BASE_URL + path, options)
-  .then(res => res.status <= 400 ? res : Promise.reject())
-  // .then(res => res.status === 204 ? res : res.json())
-  .catch(err => console.error(`Error fetching ${path}:`, err))
-}
-
 function register (user){
   return fetch(`${BASE_URL}/register`, {
     method: 'POST',
